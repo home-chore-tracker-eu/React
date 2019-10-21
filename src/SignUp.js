@@ -34,8 +34,8 @@ const SignUpForm = props => {
         )}
       </Form.Item>
       <Form.Item>
-        {getFieldDecorator("name", {
-          rules: [{ required: true, message: "Please input your email!" }]
+        {getFieldDecorator("email", {
+          rules: [{ type: 'email', required: true, message: "Please input a valid email." }]
         })(
           <Input
             prefix={<Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />}
