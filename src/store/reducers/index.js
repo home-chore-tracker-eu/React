@@ -1,12 +1,17 @@
+import { combineReducers } from "redux";
 import * as types from "../actions";
 
-//CHORES LIST REDUCER
-const initialChoresListState = {
+//CHORES REDUCER
+const initialChores = {
   chores: [],
-  isFetching: false
+  isFetching: false,
+  isDeleting: false,
+  isPosting: false,
+  isPutting: false,
+  error: ""
 };
 
-export const choresListReducer = (state = initialChoresListState, action) => {
+export const choresReducer = (state = initialChores, action) => {
   switch (action.type) {
     case types.FETCH_CHORES_START:
       return {
@@ -18,30 +23,18 @@ export const choresListReducer = (state = initialChoresListState, action) => {
       return {
         ...state,
         isFetching: false,
-        data: action.payload
+        chores: action.payload
       };
     case types.FETCH_CHORES_FAILURE:
       return {
         ...state,
         error: action.payload
       };
-    default:
-      return state;
-  }
-};
-
-//CHORE ADDITION
-const initialAddChoreState = {
-  isPosting: false,
-  error: ""
-};
-
-export const addChoreReducer = (state = initialAddChoreState, action) => {
-  switch (action.type) {
     case types.POST_NEW_CHORE_START:
       return {
         ...state,
-        isPosting: true
+        isPosting: true,
+        error: ""
       };
     case types.POST_NEW_CHORE_SUCCESS:
       return {
@@ -53,32 +46,19 @@ export const addChoreReducer = (state = initialAddChoreState, action) => {
         ...state,
         error: action.payload
       };
-    default:
-      return state;
-  }
-};
 
-//KIDS LIST FETCH
-const initialkidsListState = {
-  kids: [],
-  isFetching: false
-};
-
-export const kidsListReducer = (state = initialkidsListState, action) => {
-  switch (action.type) {
-    case types.FETCH_KIDS_START:
+    case types.DELETE_CHORE_START:
       return {
         ...state,
-        isFetching: true,
+        isDeleting: true,
         error: ""
       };
-    case types.FETCH_KIDS_SUCCESS:
+    case types.DELETE_CHORE_SUCCESS:
       return {
         ...state,
-        isFetching: false,
-        data: action.payload
+        isDeleting: false
       };
-    case types.FETCH_KIDS_FAILURE:
+    case types.DELETE_CHORE_FAILURE:
       return {
         ...state,
         error: action.payload
@@ -88,4 +68,142 @@ export const kidsListReducer = (state = initialkidsListState, action) => {
   }
 };
 
-//ADDING KIDS
+//CHILDREN REDUCER
+const initialChildren = {
+  children: [],
+  isFetching: false,
+  isDeleting: false,
+  isPosting: false,
+  isPutting: false,
+  error: ""
+};
+
+export const childrenReducer = (state = initialChildren, action) => {
+  switch (action.type) {
+    case types.FETCH_CHILDREN_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: ""
+      };
+    case types.FETCH_CHILDREN_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        children: action.payload
+      };
+    case types.FETCH_CHILDREN_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case types.POST_NEW_CHILD_START:
+      return {
+        ...state,
+        isPosting: true,
+        error: ""
+      };
+    case types.POST_NEW_CHILD_SUCCESS:
+      return {
+        ...state,
+        isPosting: false
+      };
+    case types.POST_NEW_CHILD_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
+
+    case types.DELETE_CHILD_START:
+      return {
+        ...state,
+        isDeleting: true,
+        error: ""
+      };
+    case types.DELETE_CHILD_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false
+      };
+    case types.DELETE_CHILD_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+//FAMILIES REDUCER
+const initialFamilies = {
+  families: [],
+  isFetching: false,
+  isDeleting: false,
+  isPosting: false,
+  isPutting: false,
+  error: ""
+};
+
+export const familiesReducer = (state = initialFamilies, action) => {
+  switch (action.type) {
+    case types.FETCH_FAMILIES_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: ""
+      };
+    case types.FETCH_FAMILIES_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        families: action.payload
+      };
+    case types.FETCH_FAMILIES_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case types.POST_NEW_FAMILY_START:
+      return {
+        ...state,
+        isPosting: true,
+        error: ""
+      };
+    case types.POST_NEW_FAMILY_SUCCESS:
+      return {
+        ...state,
+        isPosting: false
+      };
+    case types.POST_NEW_FAMILY_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
+
+    case types.DELETE_FAMILY_START:
+      return {
+        ...state,
+        isDeleting: true,
+        error: ""
+      };
+    case types.DELETE_FAMILY_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false
+      };
+    case types.DELETE_FAMILY_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+export const reducer = combineReducers({
+  chores: choresReducer,
+  children: childrenReducer,
+  families: familiesReducer
+});
