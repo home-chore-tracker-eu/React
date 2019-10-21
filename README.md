@@ -12,7 +12,7 @@
 - Parents aged 25 – 45 with children under 18 years old.
 - Children  from aged 6 years + who love using their phone and love earning extra rewards.
 ## MVP
-1.	User can signup/register/create an account as a "Parent" (web)
+1. User can signup/register/create an account as a "Parent" (web)
 2. User can login with their chosen username and password (web & mobile)
 3. Authenticated "Parent" can add kids to their "Family" and create/register "Child" accounts for each child. (web)
 4. Authenticated "Parent" can create a list of custom chores, or select chores from a template/list of common household chores. (web)
