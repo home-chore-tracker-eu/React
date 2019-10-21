@@ -59,9 +59,6 @@ const SignUpForm = props => {
           valuePropName: "checked",
           initialValue: true
         })(<Checkbox>Remember me</Checkbox>)}
-        <a className="login-form-forgot" href="google.com">
-          Forgot password
-        </a>
         <Button type="primary" htmlType="submit" className="signup-form-button">
           Sign Up
         </Button>
