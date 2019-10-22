@@ -1,6 +1,5 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { useSelector } from 'react-redux'
 import {
   Layout,
   Icon,

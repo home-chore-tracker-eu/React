@@ -19,7 +19,7 @@ const LoginForm = props => {
           })
           .then(res => {
             localStorage.setItem('token', res.data.token)
-            props.history.push("/dashboard");
+            props.history.push("/dashboard/overview");
             alert(res.data.message)
             console.log(res.data.token)
           })
@@ -30,7 +30,7 @@ const LoginForm = props => {
     });
   };
 
-  if (localStorage.getItem("token")) return <Redirect to="/dashboard" />;
+  if (localStorage.getItem("token")) return <Redirect to="/dashboard/overview" />;
 
 
   return (

@@ -6,10 +6,10 @@ import Chore from "./Chore";
 const ChoresList = () => {
   const chores = useSelector(state => state.chores);
   const dispatch = useDispatch();
-  
-  useEffect(() => dispatch(fetchChores()), []);
 
-  console.log(chores);
+  useEffect(() => dispatch(fetchChores()), [dispatch]);
+
+  console.log(chores.chores);
 
   return (
     <div className="chores">

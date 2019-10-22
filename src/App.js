@@ -8,14 +8,13 @@ import Login from "./components/Login";
 
 function App() {
   console.log(useSelector(state => state.families.families))
-
   return (
     <>
         <Route
-          exact path='/login'
+          exact path='/'
           component={Login}
           />
-          <PrivateRoute exact path='/dashboard' component={MineChore} />
+          <PrivateRoute path='/dashboard/' component={MineChore} />
     </>
   );
 }

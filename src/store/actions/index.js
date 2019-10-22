@@ -1,4 +1,6 @@
 import axios from "axios";
+import withAxios from '../../axios/index'
+import withAuth from "../../axios/index";
 
 //ACTION TYPES
 export const FETCH_CHORES_START = "FETCH_CHORES_START";
@@ -55,7 +57,7 @@ export const DELETE_FAMILY_FAILURE = "DELETE_FAMILY_FAILURE";
 //CHORES
 export const fetchChores = () => dispatch => {
   dispatch({ type: FETCH_CHORES_START });
-  axios
+  withAuth()
     .get(`home-chore-tracker.herokuapp.com/api/chores`)
     .then(res => dispatch({ type: FETCH_CHORES_SUCCESS, payload: res.data }))
     .catch(err =>
@@ -68,7 +70,7 @@ export const fetchChores = () => dispatch => {
 
 export const postNewChore = chore => dispatch => {
   dispatch({ type: POST_NEW_CHORE_START });
-  axios
+  withAuth()
     .post(`home-chore-tracker.herokuapp.com/api/chores`, chore)
     .then(() => dispatch({ type: POST_NEW_CHORE_SUCCESS }))
     .catch(err =>
@@ -78,7 +80,7 @@ export const postNewChore = chore => dispatch => {
 
 export const editChore = (id, chore) => dispatch => {
   dispatch({ type: EDIT_CHORE_START });
-  axios
+  withAuth()
     .put(`home-chore-tracker.herokuapp.com/api/chores/${id}`, chore)
     .then(() => dispatch({ type: EDIT_CHORE_SUCCESS }))
     .catch(err =>
@@ -88,7 +90,7 @@ export const editChore = (id, chore) => dispatch => {
 
 export const deleteChore = id => dispatch => {
   dispatch({ type: DELETE_CHORE_START });
-  axios
+  withAuth()
     .delete(`home-chore-tracker.herokuapp.com/api/chores/${id}`)
     .then(() => dispatch({ type: DELETE_CHORE_SUCCESS }))
     .catch(err =>
@@ -102,7 +104,7 @@ export const deleteChore = id => dispatch => {
 //CHILDREN
 export const fetchChildren = () => dispatch => {
   dispatch({ type: FETCH_CHILDREN_START });
-  axios
+  withAuth()
     .get(`home-chore-tracker.herokuapp.com/api/children`)
     .then(res => dispatch({ type: FETCH_CHILDREN_SUCCESS, payload: res.data }))
     .catch(err =>
@@ -115,7 +117,7 @@ export const fetchChildren = () => dispatch => {
 
 export const postNewChild = child => dispatch => {
   dispatch({ type: POST_NEW_CHILD_START });
-  axios
+  withAuth()
     .post(`home-chore-tracker.herokuapp.com/api/children`, child)
     .then(() => dispatch({ type: POST_NEW_CHILD_SUCCESS }))
     .catch(err =>
@@ -128,7 +130,7 @@ export const postNewChild = child => dispatch => {
 
 export const editChild = (id, child) => dispatch => {
   dispatch({ type: EDIT_CHILD_START });
-  axios
+  withAuth()
     .put(`home-chore-tracker.herokuapp.com/api/children/${id}`, child)
     .then(() => dispatch({ type: EDIT_CHILD_SUCCESS }))
     .catch(err =>
@@ -141,7 +143,7 @@ export const editChild = (id, child) => dispatch => {
 
 export const deleteChild = id => dispatch => {
   dispatch({ type: DELETE_CHILD_START });
-  axios
+  withAuth()
     .delete(`home-chore-tracker.herokuapp.com/api/children/${id}`)
     .then(() => dispatch({ type: DELETE_CHILD_SUCCESS }))
     .catch(err =>
@@ -155,7 +157,7 @@ export const deleteChild = id => dispatch => {
 //FAMILIES
 export const fetchFamilies = () => dispatch => {
     dispatch({ type: FETCH_FAMILIES_START });
-    axios
+    withAuth()
       .get(`home-chore-tracker.herokuapp.com/api/families`)
       .then(res => dispatch({ type: FETCH_FAMILIES_SUCCESS, payload: res.data }))
       .catch(err =>
@@ -168,7 +170,7 @@ export const fetchFamilies = () => dispatch => {
   
   export const postNewFamily = family => dispatch => {
     dispatch({ type: POST_NEW_FAMILY_START });
-    axios
+    withAuth()
       .post(`home-chore-tracker.herokuapp.com/api/families`, family)
       .then(() => dispatch({ type: POST_NEW_FAMILY_SUCCESS }))
       .catch(err =>
@@ -181,7 +183,7 @@ export const fetchFamilies = () => dispatch => {
   
   export const editFamily = (id, family) => dispatch => {
     dispatch({ type: EDIT_FAMILY_START });
-    axios
+    withAuth()
       .put(`home-chore-tracker.herokuapp.com/api/families/${id}`, family)
       .then(() => dispatch({ type: EDIT_FAMILY_SUCCESS }))
       .catch(err =>
@@ -194,7 +196,7 @@ export const fetchFamilies = () => dispatch => {
   
   export const deleteFamily = id => dispatch => {
     dispatch({ type: DELETE_FAMILY_START });
-    axios
+    withAuth()
       .delete(`home-chore-tracker.herokuapp.com/api/families/${id}`)
       .then(() => dispatch({ type: DELETE_FAMILY_SUCCESS }))
       .catch(err =>
