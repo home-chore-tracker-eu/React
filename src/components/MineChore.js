@@ -1,12 +1,12 @@
 import React from "react";
-import AppLayout from "./Layout";
+import DashboardLayout from "./Layout";
 import Header from "./Header"
 
 const MineChore = () => {
   return (
     <div className="App">
       <Header />
-      <AppLayout />
+      <DashboardLayout />
     </div>
   );
 };
