@@ -10,8 +10,8 @@ export default function NavBar() {
   return (
     <nav>
         <NavLink exact to="/login">Login</NavLink><br />
-        <NavLink to="/AddTask">Sign up</NavLink><br />
-        <NavLink to="/TaskList">Task List</NavLink><br />
+        <NavLink to="/register">Register</NavLink><br />
+        <NavLink to="/tasklist">Task List</NavLink><br />
       <button onClick={onLogout}>Logout</button>
     </nav>
   );
