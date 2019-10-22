@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   //testing the store
-  console.log(useSelector(state => state.families))
+  console.log(useSelector(state => state.families.families))
 
   return (
     <div className="App">

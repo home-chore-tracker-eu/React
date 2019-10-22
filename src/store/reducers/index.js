@@ -34,7 +34,6 @@ export const choresReducer = (state = initialChores, action) => {
       return {
         ...state,
         isPosting: true,
-        error: ""
       };
     case types.POST_NEW_CHORE_SUCCESS:
       return {
@@ -51,7 +50,6 @@ export const choresReducer = (state = initialChores, action) => {
       return {
         ...state,
         isDeleting: true,
-        error: ""
       };
     case types.DELETE_CHORE_SUCCESS:
       return {
