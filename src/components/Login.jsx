@@ -1,22 +1,25 @@
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
-import Axios from "axios";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 
 const LoginForm = props => {
   const { getFieldDecorator, validateFields } = props.form;
+
   const handleSubmit = e => {
     e.preventDefault();
     validateFields((err, values) => {
       if (!err) {
         console.log("Here are the form values", values.username);
-        Axios
+        axios
           .post('https://home-chore-tracker.herokuapp.com/api/auth/login', {
             "email": values.username,
             "password": values.password
           })
           .then(res => {
             localStorage.setItem('token', res.data.token)
+            props.history.push("/dashboard");
             alert(res.data.message)
             console.log(res.data.token)
           })
@@ -26,6 +29,9 @@ const LoginForm = props => {
       }
     });
   };
+
+  if (localStorage.getItem("token")) return <Redirect to="/dashboard" />;
+
 
   return (
     <Form onSubmit={handleSubmit} className="login-form">

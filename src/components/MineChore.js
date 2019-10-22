@@ -4,7 +4,7 @@ import Header from "./Header"
 
 const MineChore = () => {
   return (
-    <div>
+    <div className="App">
       <Header />
       <AppLayout />
     </div>
