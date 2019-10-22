@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       App
       {/* <SignUp /> */}
+      {/* Jaynes stuff  */}
       <FormikSignUpForm />
     </div>
   );
