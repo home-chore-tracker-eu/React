@@ -5,6 +5,7 @@ import PrivateRoute from '../src/components/PrivateRoute'
 import "./App.less";
 import MineChore from './components/MineChore'
 import Login from "./components/Login";
+import "./App.css";
 
 function App() {
   console.log(useSelector(state => state.families.families))

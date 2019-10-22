@@ -7,6 +7,9 @@ import { Redirect } from "react-router-dom";
 const LoginForm = props => {
   const { getFieldDecorator, validateFields } = props.form;
 
+
+const LoginForm = props => {
+  const { getFieldDecorator, validateFields } = props.form;
   const handleSubmit = e => {
     e.preventDefault();
     validateFields((err, values) => {
@@ -31,8 +34,6 @@ const LoginForm = props => {
   };
 
   if (localStorage.getItem("token")) return <Redirect to="/dashboard" />;
-
-
   return (
     <Form onSubmit={handleSubmit} className="login-form">
       <Form.Item>
