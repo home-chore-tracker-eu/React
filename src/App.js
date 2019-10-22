@@ -14,6 +14,7 @@ function App() {
         <Route
           path="/tasklist"
           render={props => withAuthCheck(TaskList, props)}
+          // component={TaskList}
         />
       </main>
     </div>
