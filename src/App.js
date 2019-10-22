@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PrivateRoute from '../src/components/PrivateRoute'
 import "./App.css";
-import MineChore from './MineChore'
+import MineChore from './components/MineChore'
 import Login from "./components/Login";
 import NavBar from "./components/Navbar";
 

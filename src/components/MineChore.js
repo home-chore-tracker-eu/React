@@ -1,6 +1,6 @@
 import React from "react";
-import AppLayout from "./components/Layout";
-import Header from "./components/Header"
+import AppLayout from "./Layout";
+import Header from "./Header"
 
 const MineChore = () => {
   return (
