@@ -13,12 +13,13 @@ const SignUpForm = props => {
       axios
         .post('https://home-chore-tracker.herokuapp.com/api/auth/register', {
           "name": values.name, 
-          "email": values.username, 
+          "email": values.email, 
           "password": values.password, 
           "pictureURL": values.pictureURL
         })
         .then(res => {
           localStorage.setItem('token', res.data.token)
+          console.log(res)
           console.log(res.data.token)
           })
         .catch(err => {
@@ -71,10 +72,10 @@ const SignUpForm = props => {
       </Form.Item>
       
       <Form.Item>
-        {getFieldDecorator("remember", {
+        {/* {getFieldDecorator("remember", {
           valuePropName: "checked",
           initialValue: true
-        })(<Checkbox>Remember me</Checkbox>)}
+        })(<Checkbox>Remember me</Checkbox>)} */}
         <Button type="primary" htmlType="submit" className="signup-form-button">
           Sign Up
         </Button>
