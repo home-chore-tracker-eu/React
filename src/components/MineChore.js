@@ -9,15 +9,15 @@ const MineChore = () => {
   const [target, setTarget] = useState("");
   const [editing, setEditing] = useState(false);
   const [editItem, setEditItem] = useState()
-  // const chores = useSelector(state => state.chores.chores);
-  // const families = useSelector(state => state.families.families);
-  // const children = useSelector(state => state.children.children);
+  const chores = useSelector(state => state.chores.chores);
+  const families = useSelector(state => state.families.families);
+  const children = useSelector(state => state.children.children);
   const dispatch = useDispatch();
 
 
-  useEffect(() => dispatch(fetchChores()), []);
-  // useEffect(() => dispatch(fetchFamilies()), [families, dispatch]);
-  // useEffect(() => dispatch(fetchChildren()), [children, dispatch]);
+  useEffect(() => dispatch(fetchChores()), [chores]);
+  useEffect(() => dispatch(fetchFamilies()), [families, dispatch]);
+  useEffect(() => dispatch(fetchChildren()), [children, dispatch]);
 
   function handleMenu(e) {
     setVisible(true);

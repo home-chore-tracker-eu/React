@@ -115,7 +115,7 @@ const Forms = ({
               <Col span={24}>
                 <Form.Item label="Title">
                   {getFieldDecorator("title", {
-                    initialValue: editing && editItem.title,
+                    initialValue: editing === true ? editItem.title : "",
                     rules: [
                       {
                         required: true,
