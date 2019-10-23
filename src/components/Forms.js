@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Col, Row, Input, Select, DatePicker } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { postNewChore, postNewChild, postNewFamily } from "../store/actions";
+import { postNewChore, postNewChild, postNewFamily, editChore } from "../store/actions";
 import Moment from "moment";
+import { OmitProps } from "antd/lib/transfer/renderListBody";
+import Chore from "./Chore";
 const { Option } = Select;
 
 const Forms = ({
@@ -11,7 +13,10 @@ const Forms = ({
   setVisible,
   target,
   setTarget,
-  handleMenu
+  editing,
+  editItem,
+  setEditItem,
+  setEditing
 }) => {
   // const [visible, setVisible] = useState(false);
   const [newItem, setNewItem] = useState();
@@ -20,10 +25,6 @@ const Forms = ({
 
   const families = useSelector(state => state.families.families);
   const children = useSelector(state => state.children.children);
-
-  console.log(useSelector(state => state.families.families));
-  console.log(useSelector(state => state.children.children));
-  console.log(useSelector(state => state.chores));
 
   const onClose = () => {
     setVisible(false);
@@ -66,6 +67,7 @@ const Forms = ({
           });
           setFieldsValue({});
           setVisible(false);
+          
         }
       }
     });
@@ -74,8 +76,13 @@ const Forms = ({
   useEffect(
     function() {
       if (target === "Chore") {
-        setTarget("");
-        return dispatch(postNewChore(newItem));
+        if (!editing) {
+          setTarget("");
+          dispatch(postNewChore(newItem));
+        }
+        dispatch((editChore(editItem.id, newItem)))
+        setEditing(false);
+        setEditItem(null);
       }
       if (target === "Child") {
         console.log(newItem);
@@ -108,6 +115,7 @@ const Forms = ({
               <Col span={24}>
                 <Form.Item label="Title">
                   {getFieldDecorator("title", {
+                    initialValue: editing && editItem.title,
                     rules: [
                       {
                         required: true,
@@ -165,6 +173,7 @@ const Forms = ({
               <Col span={24}>
                 <Form.Item label="Description">
                   {getFieldDecorator("description", {
+                    initialValue: editing && editItem.description,
                     rules: [
                       {
                         required: true,

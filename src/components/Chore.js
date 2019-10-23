@@ -10,20 +10,35 @@ const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
 
 const Chore = props => {
   const children = useSelector(state => state.children);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const handleDelete = (e) => {
+  const handleDelete = e => {
     e.preventDefault();
-    dispatch(deleteChore(props.chore.id))
-  }
+    dispatch(deleteChore(props.chore.id));
+  };
 
-  console.log(children);
-  console.log(props.chore.id);
-  console.log(
-    children.children.find(
-      child => child.chores["child_id"] === props.chore["child_id"]
-    )
-  );
+  const target = "Chore";
+
+  const handleEditing = e => {
+    props.setEditing(true);
+    props.setTarget(target);
+    props.setEditItem(props.chore)
+    console.log(e);
+    console.log(props.editing);
+    console.log(target);
+    if (props.editing === true) {
+      props.setVisible(true);
+    }
+  };
+
+  console.log(props.chore)
+  // console.log(children);
+  // console.log(props.chore.id);
+  // console.log(
+  //   children.children.find(
+  //     child => child.chores["child_id"] === props.chore["child_id"]
+  //   )
+  // );
 
   return (
     <Card
@@ -32,7 +47,7 @@ const Chore = props => {
         width: 300,
         marginTop: 16,
         marginRight: 10,
-        boxShadow: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)",
+        boxShadow: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
         // borderRadius: "8px 8px 0 0"
       }}
       cover={
@@ -58,14 +73,13 @@ const Chore = props => {
         </div>
       }
       actions={[
-        <Icon type="delete" key="delete" onClick = {handleDelete}/>,
-        <Icon type="edit" key="edit" />
+        <Icon type="delete" key="Chore" onClick={handleDelete} />,
+        <Icon type="edit" key="Chore" onClick={handleEditing} />
       ]}
     >
       <Avatar src="https://thecutebabycontest.com/wp-content/uploads/2019/03/winner-3-1552330890.jpg" />
       <br />
       <br />
-
       <Meta title={props.chore.title} description={props.chore.description} />
       <div className="card-bottom">
         <div className="assigned">Assigned to:{}</div>

@@ -14,7 +14,12 @@ const DashboardLayout = ({
   setVisible,
   target,
   setTarget,
-  handleMenu
+  handleMenu,
+  editing,
+  setEditing,
+  handleEditing,
+  editItem,
+  setEditItem
 }) => {
   return (
     <Layout theme="dark" style={{ minHeight: "100vh" }}>
@@ -34,7 +39,7 @@ const DashboardLayout = ({
           style={{ marginTop: 18 }}
         >
           <Menu.Item key="1">
-            <Link to="/#/dashboard/overview">
+            <Link to="/dashboard">
               <Icon type="home" theme="filled" />
               <span>Overview</span>
             </Link>
@@ -79,7 +84,23 @@ const DashboardLayout = ({
               minHeight: "90vh"
             }}
           >
-            <Route path="/dashboard" component={ChoresList} />
+            <Route
+              exact
+              path="/dashboard"
+              render={props => (
+                <ChoresList
+                  {...props}
+                  editing={editing}
+                  setEditing={setEditing}
+                  handleEditing={handleEditing}
+                  editItem={editItem}
+                  setEditItem={setEditItem}
+                  setVisible = {setVisible}
+                  setTarget = {setTarget}
+                  target = {target}
+                />
+              )}
+            />
             <Route path="/dashboard/performances" component={Performances} />
 
             <Forms
@@ -88,6 +109,10 @@ const DashboardLayout = ({
               target={target}
               setTarget={setTarget}
               handleMenu={handleMenu}
+              editing={editing}
+              setEditing={setEditing}
+              editItem={editItem}
+              setEditItem={setEditItem}
             />
           </div>
         </Content>
