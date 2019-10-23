@@ -163,7 +163,7 @@ export const fetchFamilies = () => dispatch => {
     .catch(err =>
       dispatch({
         type: FETCH_FAMILIES_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
@@ -172,8 +172,9 @@ export const postNewFamily = family => dispatch => {
   dispatch({ type: POST_NEW_FAMILY_START });
   axiosWithAuth()
     .post(`/families`, family)
-    .then(() => 
-      dispatch({ type: POST_NEW_FAMILY_SUCCESS })
+    .then((res) => {
+      console.log(res.data)
+      dispatch({ type: POST_NEW_FAMILY_SUCCESS })}
     )
     .catch(err =>
       dispatch({

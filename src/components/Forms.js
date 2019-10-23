@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Col, Row, Input, Select, DatePicker } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postNewChore, postNewChild, postNewFamily } from "../store/actions";
 const { Option } = Select;
 
@@ -13,9 +13,14 @@ const Forms = ({
   handleMenu
 }) => {
   // const [visible, setVisible] = useState(false);
-  const [newItem, setNewItem] = useState({});
+  const [newItem, setNewItem] = useState();
   const { getFieldDecorator, validateFields, setFieldsValue } = form;
   const dispatch = useDispatch();
+
+  const families = useSelector(state => state.families.families)
+
+  console.log(useSelector(state => state.families.families));
+  console.log(useSelector(state => state.children.children));
 
   const onClose = () => {
     setVisible(false);
@@ -24,9 +29,24 @@ const Forms = ({
     e.preventDefault();
     validateFields((err, values) => {
       if (!err) {
-        setNewItem(values);
-        setFieldsValue({});
-        setVisible(false);
+        if (target === "Child") {
+          const mactchingFamily = families.find(family => family.surname === values.family)
+          const ID = mactchingFamily.id
+          setNewItem({ name: values.name, familyId: ID})
+          setFieldsValue({});
+          setVisible(false);
+        }
+
+        if (target === 'Family') {
+
+        }
+
+        if (target === 'Chore') {
+          
+        }
+        // setNewItem(values);
+        // setFieldsValue({});
+        // setVisible(false);
       }
     });
   };
@@ -38,10 +58,9 @@ const Forms = ({
         return dispatch(postNewChore(newItem));
       }
       if (target === "Child") {
-        setTarget("");
         console.log(newItem);
+        setTarget("");
         return dispatch(postNewChild(newItem));
-        
       }
       if (target === "Family") {
         setTarget("");
@@ -60,7 +79,7 @@ const Forms = ({
           visible={visible}
           onCancel={onClose}
           onOk={handleSubmit}
-          okText = "Submit"
+          okText="Submit"
           title="Create a new chore"
           width={800}
         >
@@ -155,7 +174,7 @@ const Forms = ({
           onCancel={onClose}
           onOk={handleSubmit}
           title="Create a new family"
-          okText = "Submit"
+          okText="Submit"
           width={600}
         >
           <Form layout="vertical" hideRequiredMark onSubmit={handleSubmit}>
@@ -189,7 +208,7 @@ const Forms = ({
           onCancel={onClose}
           onOk={handleSubmit}
           title="Create a new child account"
-          okText = "Submit"
+          okText="Submit"
           width={600}
         >
           <Form layout="vertical" hideRequiredMark onSubmit={handleSubmit}>
@@ -208,6 +227,21 @@ const Forms = ({
                   )}
                 </Form.Item>
               </Col>
+              <Col span={24}>
+              <Form.Item label="Child's Family">
+                {getFieldDecorator("family", {
+                  rules: [
+                    { required: true, message: "Please choose the family of the child" }
+                  ]
+                })(
+                  <Select placeholder="Please choose the family of the child">
+                    {families.map(family => 
+                    <Option value={family.surname}>The {family.surname}s</Option>
+                    )}
+                  </Select>
+                )}
+              </Form.Item>
+            </Col>
             </Row>
           </Form>
         </Modal>

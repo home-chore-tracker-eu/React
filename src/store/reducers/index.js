@@ -11,7 +11,7 @@ const initialChores = {
   error: ""
 };
 
-export const choresReducer = (state = initialChores, action) => {
+const choresReducer = (state = initialChores, action) => {
   switch (action.type) {
     case types.FETCH_CHORES_START:
       return {
@@ -76,7 +76,7 @@ const initialChildren = {
   error: ""
 };
 
-export const childrenReducer = (state = initialChildren, action) => {
+const childrenReducer = (state = initialChildren, action) => {
   switch (action.type) {
     case types.FETCH_CHILDREN_START:
       return {
@@ -143,7 +143,7 @@ const initialFamilies = {
   error: ""
 };
 
-export const familiesReducer = (state = initialFamilies, action) => {
+const familiesReducer = (state = initialFamilies, action) => {
   switch (action.type) {
     case types.FETCH_FAMILIES_START:
       return {

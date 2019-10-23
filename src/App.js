@@ -8,7 +8,6 @@ import Login from "./components/Login";
 import "./App.less";
 
 function App() {
-  console.log(useSelector(state => state.families.families))
   return (
     <>
         <Route
