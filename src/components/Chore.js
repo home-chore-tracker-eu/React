@@ -23,9 +23,6 @@ const Chore = props => {
     props.setEditing(true);
     props.setTarget(target);
     props.setEditItem(props.chore)
-    console.log(e);
-    console.log(props.editing);
-    console.log(target);
     if (props.editing === true) {
       props.setVisible(true);
     }
