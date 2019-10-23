@@ -7,6 +7,7 @@ const ChoresList = () => {
   const chores = useSelector(state => state.chores);
   const families = useSelector(state => state.families);
   const dispatch = useDispatch();
+  const children = useSelector (state => state.children.children)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => dispatch(fetchChores()), []);
@@ -19,7 +20,7 @@ const ChoresList = () => {
   return (
     <div className="chores">
       {chores.chores.map(chore => (
-        <Chore key={chore.id} chore={chore} />
+        <Chore key={chore.id} chore={chore} children = {children} chores={chores}/>
       ))}
     </div>
   );
