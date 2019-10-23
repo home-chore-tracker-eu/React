@@ -10,8 +10,13 @@ const SignUpForm = props => {
       if (!err) {
         console.log("Here are the form values", values);
       }
-      axios.post('https://home-chore-tracker.herokuapp.com/api/auth/register', {
-        "name": values.name, "email": values.username, "password": values.password})
+      axios
+        .post('https://home-chore-tracker.herokuapp.com/api/auth/register', {
+          "name": values.name, 
+          "email": values.username, 
+          "password": values.password, 
+          "pictureURL": values.pictureURL
+        })
         .then(res => {
           localStorage.setItem('token', res.data.token)
           console.log(res.data.token)
@@ -54,6 +59,17 @@ const SignUpForm = props => {
           />
         )}
       </Form.Item>
+      <Form.Item>
+        {getFieldDecorator("pictureURL", {
+          rules: [{ required: true, message: "Please submit a link to a picture!" }]
+        })(
+          <Input
+            prefix={<Icon type="picture" style={{ color: "rgba(0,0,0,.25)" }} />}
+            placeholder="Picture URL"
+          />
+        )}
+      </Form.Item>
+      
       <Form.Item>
         {getFieldDecorator("remember", {
           valuePropName: "checked",
