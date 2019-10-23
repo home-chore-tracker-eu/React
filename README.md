@@ -1,16 +1,16 @@
 # React - MineChores
 
 ## Problem
--  Families are busy. Whether it’s fitting chores in-between your work hours, birthday parties or ballet lessons, if can be difficult to keep track of what needs done, who has done it, if their work is any good, and whether it should be rewarded.
-- Kids and their phones, amiright??
+-  Families are busy. Fitting chores in-between your work hours, birthday parties or ballet lessons can be . It can be difficult to keep track of what needs to be done and ensure chores are shared evenly. Post-It notes are used by many but these are easily lost and cannot be easily shared out in a way that’s trackable.
 ## Solution
--  Children love games, and they love using their phone.  Why not take advantage of that? Our app makes chores slightly less sucky. There’s easy ways to create chores and assign them.  
-- Keep track of what work is done by whom.  It’s easy to see who’s working hard, and who’s hardly working.
--  Want that shiny new gadget??  You can earn extra points by doing extra tasks.  Parents, that goes for you too :D
+-  Our app keeps track of chores and ensures they are divided evenly and fairly. Children love games, and they love using their phone, which helps them buy-in to the idea of being assigned chores. Children love being given responsibilities, they see it as a sign of growing up. Why not take advantage of that? With our app it’s easy to see who’s contributing and they can be rewarded effectively.
+
+Assign a chore to a family member, set a deadline and you’re done.  
+
 - Why gamble with Post-Its that can be lost, when you can have a permanent record of who is the Champion of the Household?
 ## Our Customer
-- Parents aged 25 – 45 with children under 18 years old.
-- Children  from aged 6 years + who love using their phone and love earning extra rewards.
+- Parents with young children, aged between 7 and 14.rewards.
+
 ## MVP
 1. User can signup/register/create an account as a "Parent" (web)
 2. User can login with their chosen username and password (web & mobile)
@@ -23,7 +23,7 @@
 9. Authenticated "Child" can check off completed tasks, and submit a photo of the completed chore (and optional comment) for manual approval, if required by "Parent". (mobile)
 
 ## Mission Statement
-We make chores less sucky.
+Families are a unit: live together, love together, work together.
 
 
 
