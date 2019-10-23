@@ -14,9 +14,6 @@ const ChoresList = ({ editing, setEditing, handleEditing, setEditItem, setVisibl
   useEffect(() => dispatch(fetchFamilies()), []);
   useEffect(() => dispatch(fetchChildren()), []);
 
-
-  // console.log(chores.isFetching);
-
   return (
     <div className="chores">
       {chores.chores.map(chore => (

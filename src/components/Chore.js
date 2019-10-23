@@ -31,15 +31,6 @@ const Chore = props => {
     }
   };
 
-  console.log(props.chore)
-  // console.log(children);
-  // console.log(props.chore.id);
-  // console.log(
-  //   children.children.find(
-  //     child => child.chores["child_id"] === props.chore["child_id"]
-  //   )
-  // );
-
   return (
     <Card
       hoverable="true"

@@ -24,9 +24,6 @@ const MineChore = () => {
     const savedTarget = e.key;
     setTarget(savedTarget);
   }
-
-  
-
   return (
     <div className="App">
       <Header

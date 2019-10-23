@@ -3,8 +3,7 @@ import { Modal, Form, Col, Row, Input, Select, DatePicker } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { postNewChore, postNewChild, postNewFamily, editChore } from "../store/actions";
 import Moment from "moment";
-import { OmitProps } from "antd/lib/transfer/renderListBody";
-import Chore from "./Chore";
+
 const { Option } = Select;
 
 const Forms = ({
