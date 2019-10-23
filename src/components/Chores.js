@@ -5,11 +5,13 @@ import Chore from "./Chore";
 
 const ChoresList = () => {
   const chores = useSelector(state => state.chores);
+  console.log(useSelector(state => state.families.families));
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(fetchChores()), [dispatch]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => dispatch(fetchChores()), []);
 
-  console.log(chores.chores);
+  // console.log(chores.isFetching);
 
   return (
     <div className="chores">

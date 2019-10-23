@@ -8,7 +8,8 @@ import {
   Dropdown,
   Avatar,
   Popover,
-  Input
+  Input,
+  Button
 } from "antd";
 
 const { Search } = Input;
@@ -18,8 +19,7 @@ const profile = {
   user: "random"
 };
 
-const AppHeader = props => {
-
+const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget }) => {
   let username = profile.user ? profile.user.name : "";
   const menu = (
     <Menu>
@@ -28,6 +28,7 @@ const AppHeader = props => {
     </Menu>
   );
 
+
   const content = (
     <div>
       <p>John completed a task!</p>
@@ -35,11 +36,29 @@ const AppHeader = props => {
     </div>
   );
 
+  const buttonmenu = (
+    <Menu onClick={handleMenu}>
+      <Menu.Item key="Family">Family</Menu.Item>
+      <Menu.Item key="Child">Child</Menu.Item>
+      <Menu.Item key="Chore">Chore</Menu.Item>
+    </Menu>
+  );
+
   return (
     <Header
       className="header"
       style={{ background: "#fff", padding: 0, positon: "fixed" }}
     >
+
+<button
+        className="logout"
+        onClick={() => {
+          localStorage.removeItem("token");
+  
+        }}
+      >
+        Logout
+      </button>
       <div className="left">
         <div>
           <h2>MineChore</h2>
@@ -54,6 +73,14 @@ const AppHeader = props => {
       </div>
 
       <div className="right">
+        <div className="header-button">
+          <Dropdown overlay={buttonmenu}>
+            <Button type="primary">
+              <Icon type="plus" /> Create New <Icon type="down" />
+            </Button>
+          </Dropdown>
+        </div>
+
         <div className="setting">
           <Badge className="header-icon">
             <Icon type="setting" />

@@ -1,18 +1,23 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { Layout, Menu, Button, Icon } from "antd";
+import { Layout, Menu, Icon } from "antd";
 import ChoresList from "./Chores";
-import AddChore from "./AddChoreForm";
+import Forms from "./Forms";
 import Performances from "./Performances";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 const { Content, Footer, Sider } = Layout;
 // const {Title} = Typography
 const { SubMenu } = Menu;
 
-const DashboardLayout = () => {
+const DashboardLayout = ({
+  visible,
+  setVisible,
+  target,
+  setTarget,
+  handleMenu
+}) => {
   return (
     <Layout theme="dark" style={{ minHeight: "100vh" }}>
-      {/* <div class="left-layout"> */}
       <Sider
         style={{
           overflow: "auto",
@@ -29,7 +34,7 @@ const DashboardLayout = () => {
           style={{ marginTop: 18 }}
         >
           <Menu.Item key="1">
-            <Link to="/dashboard/overview">
+            <Link to="/#/dashboard/overview">
               <Icon type="home" theme="filled" />
               <span>Overview</span>
             </Link>
@@ -61,10 +66,6 @@ const DashboardLayout = () => {
               <span>John</span>
             </Menu.Item>
           </SubMenu>
-
-          <Button type="primary" style={{ marginTop: 100 }}>
-            Add Chore
-          </Button>
         </Menu>
       </Sider>
       {/* </div> */}
@@ -78,16 +79,16 @@ const DashboardLayout = () => {
               minHeight: "90vh"
             }}
           >
-            <Switch>
-              <Route exact path="/dashboard/overview" component={ChoresList} />
-              <Route
-                exact
-                path="/dashboard/performances"
-                component={Performances}
-              />
-            </Switch>
+            <Route path="/dashboard" component={ChoresList} />
+            <Route path="/dashboard/performances" component={Performances} />
 
-            <AddChore />
+            <Forms
+              visible={visible}
+              setVisible={setVisible}
+              target={target}
+              setTarget={setTarget}
+              handleMenu={handleMenu}
+            />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
