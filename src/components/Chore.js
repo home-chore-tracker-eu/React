@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Icon, Avatar, Tag, Statistic, Row, Col } from "antd";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteChore } from "../store/actions";
 const { Meta } = Card;
 
 const { Countdown } = Statistic;
@@ -9,6 +10,13 @@ const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
 
 const Chore = props => {
   const children = useSelector(state => state.children);
+  const dispatch = useDispatch()
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteChore(props.chore.id))
+  }
+
   console.log(children);
   console.log(props.chore.id);
   console.log(
@@ -50,11 +58,11 @@ const Chore = props => {
         </div>
       }
       actions={[
-        <Icon type="delete" key="delete" />,
+        <Icon type="delete" key="delete" onClick = {handleDelete}/>,
         <Icon type="edit" key="edit" />
       ]}
     >
-      <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+      <Avatar src="https://thecutebabycontest.com/wp-content/uploads/2019/03/winner-3-1552330890.jpg" />
       <br />
       <br />
 
