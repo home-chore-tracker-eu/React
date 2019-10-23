@@ -1,9 +1,14 @@
 import React from "react";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button, } from "antd";
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const SignUpForm = props => {
+
   const { getFieldDecorator, validateFields } = props.form;
+
+  const history = useHistory();
+
   const handleSubmit = e => {
     e.preventDefault();
     validateFields((err, values) => {
@@ -21,6 +26,9 @@ const SignUpForm = props => {
           localStorage.setItem('token', res.data.token)
           console.log(res)
           console.log(res.data.token)
+          alert('You are registered! Please log in')
+          history.push('/');
+
           })
         .catch(err => {
           console.log(err.message);
