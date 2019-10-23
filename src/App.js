@@ -1,6 +1,5 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import PrivateRoute from '../src/components/PrivateRoute'
 import "./App.less";
 import MineChore from './components/MineChore'

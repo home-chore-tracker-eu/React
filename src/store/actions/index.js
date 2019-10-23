@@ -72,7 +72,9 @@ export const postNewChore = chore => dispatch => {
   dispatch({ type: POST_NEW_CHORE_START });
   axiosWithAuth()
     .post(`/chores`, chore)
-    .then(() => dispatch({ type: POST_NEW_CHORE_SUCCESS }))
+    .then(res => {
+      console.log(res.data)
+      dispatch({ type: POST_NEW_CHORE_SUCCESS })})
     .catch(err =>
       dispatch({ type: POST_NEW_CHORE_FAILURE, payload: err.response.message })
     );

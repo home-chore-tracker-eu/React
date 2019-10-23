@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Form, Col, Row, Input, Select, DatePicker } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { postNewChore, postNewChild, postNewFamily } from "../store/actions";
+import Moment from "moment";
 const { Option } = Select;
 
 const Forms = ({
@@ -17,10 +18,12 @@ const Forms = ({
   const { getFieldDecorator, validateFields, setFieldsValue } = form;
   const dispatch = useDispatch();
 
-  const families = useSelector(state => state.families.families)
+  const families = useSelector(state => state.families.families);
+  const children = useSelector(state => state.children.children);
 
   console.log(useSelector(state => state.families.families));
   console.log(useSelector(state => state.children.children));
+  console.log(useSelector(state => state.chores));
 
   const onClose = () => {
     setVisible(false);
@@ -30,23 +33,40 @@ const Forms = ({
     validateFields((err, values) => {
       if (!err) {
         if (target === "Child") {
-          const mactchingFamily = families.find(family => family.surname === values.family)
-          const ID = mactchingFamily.id
-          setNewItem({ name: values.name, familyId: ID})
+          const mactchingFamily = families.find(
+            family => family.surname === values.family
+          );
+          const ID = mactchingFamily.id;
+          setNewItem({ name: values.name, familyId: ID });
           setFieldsValue({});
           setVisible(false);
         }
 
-        if (target === 'Family') {
-
+        if (target === "Family") {
+          setNewItem(values);
+          setFieldsValue({});
+          setVisible(false);
         }
 
-        if (target === 'Chore') {
-          
+        if (target === "Chore") {
+          const date = Moment(new Date(values.duedate["_d"])).format(
+            "YYYY-MM-DD"
+          );
+          const matchingChild = children.find(
+            child => child.name === values.name
+          );
+          const ID = matchingChild.id;
+          setNewItem({
+            title: values.title,
+            child_id: ID,
+            description: values.description,
+            // childMarkComplete: false,
+            // parentMarkComplete: false,
+            duedate: date
+          });
+          setFieldsValue({});
+          setVisible(false);
         }
-        // setNewItem(values);
-        // setFieldsValue({});
-        // setVisible(false);
       }
     });
   };
@@ -103,23 +123,23 @@ const Forms = ({
             <Row gutter={16}>
               <Col span={24}>
                 <Form.Item label="Child">
-                  {getFieldDecorator("child", {
+                  {getFieldDecorator("name", {
                     rules: [
                       {
                         required: true,
-                        message: "Please select at least one owner",
-                        type: "array"
+                        message: "Please select at least one owner"
                       }
                     ]
                   })(
-                    <Select
-                      placeholder="Please select the child who owns this chore"
-                      mode="multiple"
-                    >
-                      <Option value="jerry">Jerry</Option>
-                      <Option value="lisa">Lisa</Option>
-                      <Option value="james">James</Option>
-                      <Option value="jayne">Jayne</Option>
+                    <Select placeholder="Please select the child who owns this chore">
+                      {children.map(child => (
+                        <Option
+                          value={child.name}
+                          key={Math.random() * Math.random()}
+                        >
+                          {child.name}
+                        </Option>
+                      ))}
                     </Select>
                   )}
                 </Form.Item>
@@ -207,7 +227,7 @@ const Forms = ({
           visible={visible}
           onCancel={onClose}
           onOk={handleSubmit}
-          title="Create a new child account"
+          title="Create a new child profile"
           okText="Submit"
           width={600}
         >
@@ -228,20 +248,28 @@ const Forms = ({
                 </Form.Item>
               </Col>
               <Col span={24}>
-              <Form.Item label="Child's Family">
-                {getFieldDecorator("family", {
-                  rules: [
-                    { required: true, message: "Please choose the family of the child" }
-                  ]
-                })(
-                  <Select placeholder="Please choose the family of the child">
-                    {families.map(family => 
-                    <Option value={family.surname}>The {family.surname}s</Option>
-                    )}
-                  </Select>
-                )}
-              </Form.Item>
-            </Col>
+                <Form.Item label="Child's Family">
+                  {getFieldDecorator("family", {
+                    rules: [
+                      {
+                        required: true,
+                        message: "Please choose the family of the child"
+                      }
+                    ]
+                  })(
+                    <Select placeholder="Please choose the family of the child">
+                      {families.map(family => (
+                        <Option
+                          value={family.surname}
+                          key={Math.random() * Math.random()}
+                        >
+                          The {family.surname}s
+                        </Option>
+                      ))}
+                    </Select>
+                  )}
+                </Form.Item>
+              </Col>
             </Row>
           </Form>
         </Modal>
