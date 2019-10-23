@@ -63,7 +63,7 @@ export const fetchChores = () => dispatch => {
       console.log(err.response);
       dispatch({
         type: FETCH_CHORES_FAILURE,
-        payload: err.response.message
+        payload: err.response
       });
     });
 };
@@ -76,7 +76,7 @@ export const postNewChore = chore => dispatch => {
       console.log(res.data)
       dispatch({ type: POST_NEW_CHORE_SUCCESS })})
     .catch(err =>
-      dispatch({ type: POST_NEW_CHORE_FAILURE, payload: err.response.message })
+      dispatch({ type: POST_NEW_CHORE_FAILURE, payload: err.response })
     );
 };
 
@@ -86,7 +86,7 @@ export const editChore = (id, chore) => dispatch => {
     .put(`/chores/${id}`, chore)
     .then(() => dispatch({ type: EDIT_CHORE_SUCCESS }))
     .catch(err =>
-      dispatch({ type: EDIT_CHORE_FAILURE, payload: err.response.message })
+      dispatch({ type: EDIT_CHORE_FAILURE, payload: err.response })
     );
 };
 
@@ -98,7 +98,7 @@ export const deleteChore = id => dispatch => {
     .catch(err =>
       dispatch({
         type: DELETE_CHORE_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
@@ -112,7 +112,7 @@ export const fetchChildren = () => dispatch => {
     .catch(err =>
       dispatch({
         type: FETCH_CHILDREN_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
@@ -125,7 +125,7 @@ export const postNewChild = child => dispatch => {
     .catch(err =>
       dispatch({
         type: POST_NEW_CHILD_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
@@ -138,7 +138,7 @@ export const editChild = (id, child) => dispatch => {
     .catch(err =>
       dispatch({
         type: EDIT_CHILD_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
@@ -151,7 +151,7 @@ export const deleteChild = id => dispatch => {
     .catch(err =>
       dispatch({
         type: DELETE_CHILD_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
@@ -181,7 +181,7 @@ export const postNewFamily = family => dispatch => {
     .catch(err =>
       dispatch({
         type: POST_NEW_FAMILY_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
@@ -194,7 +194,7 @@ export const editFamily = (id, family) => dispatch => {
     .catch(err =>
       dispatch({
         type: EDIT_FAMILY_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
@@ -207,7 +207,7 @@ export const deleteFamily = id => dispatch => {
     .catch(err =>
       dispatch({
         type: DELETE_FAMILY_FAILURE,
-        payload: err.response.message
+        payload: err.response
       })
     );
 };
