@@ -1,22 +1,19 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import PrivateRoute from '../src/components/PrivateRoute'
 import "./App.less";
 import MineChore from './components/MineChore'
 import Login from "./components/Login";
-import "./App.css";
+import "./App.less";
 
 function App() {
-  console.log(useSelector(state => state.families.families))
-
   return (
     <>
         <Route
-          exact path='/login'
+          exact path='/'
           component={Login}
           />
-          <PrivateRoute exact path='/dashboard' component={MineChore} />
+          <PrivateRoute path='/dashboard' component={MineChore} />
     </>
   );
 }

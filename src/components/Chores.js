@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchChores } from "../store/actions";
+import { fetchChores, fetchFamilies, fetchChildren } from "../store/actions";
 import Chore from "./Chore";
 
 const ChoresList = () => {
   const chores = useSelector(state => state.chores);
+  const families = useSelector(state => state.families);
   const dispatch = useDispatch();
-  
-  useEffect(() => dispatch(fetchChores()), []);
 
-  console.log(chores);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => dispatch(fetchChores()), []);
+  useEffect(() => dispatch(fetchFamilies()), []);
+  useEffect(() => dispatch(fetchChildren()), []);
+  console.log(families)
+
+  // console.log(chores.isFetching);
 
   return (
     <div className="chores">

@@ -1,13 +1,13 @@
-import axios from 'axios';
+import axios from "axios";
 
-export default function withAuth() {
-  const token = localStorage.getItem('token');
-
+export default function axiosWithAuth() {
+  const token = localStorage.getItem("token");
   const instance = axios.create({
+    baseURL: "https://home-chore-tracker.herokuapp.com/api/",
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: token,
-    },
+      "Content-Type": "application/json",
+      Authorization: token
+    }
   });
 
   return instance;

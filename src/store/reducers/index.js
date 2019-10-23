@@ -11,13 +11,12 @@ const initialChores = {
   error: ""
 };
 
-export const choresReducer = (state = initialChores, action) => {
+const choresReducer = (state = initialChores, action) => {
   switch (action.type) {
     case types.FETCH_CHORES_START:
       return {
         ...state,
         isFetching: true,
-        error: ""
       };
     case types.FETCH_CHORES_SUCCESS:
       return {
@@ -28,6 +27,7 @@ export const choresReducer = (state = initialChores, action) => {
     case types.FETCH_CHORES_FAILURE:
       return {
         ...state,
+        isFetching: false,
         error: action.payload
       };
     case types.POST_NEW_CHORE_START:
@@ -76,7 +76,7 @@ const initialChildren = {
   error: ""
 };
 
-export const childrenReducer = (state = initialChildren, action) => {
+const childrenReducer = (state = initialChildren, action) => {
   switch (action.type) {
     case types.FETCH_CHILDREN_START:
       return {
@@ -143,7 +143,7 @@ const initialFamilies = {
   error: ""
 };
 
-export const familiesReducer = (state = initialFamilies, action) => {
+const familiesReducer = (state = initialFamilies, action) => {
   switch (action.type) {
     case types.FETCH_FAMILIES_START:
       return {
@@ -171,7 +171,8 @@ export const familiesReducer = (state = initialFamilies, action) => {
     case types.POST_NEW_FAMILY_SUCCESS:
       return {
         ...state,
-        isPosting: false
+        isPosting: false,
+        families: action.payload
       };
     case types.POST_NEW_FAMILY_FAILURE:
       return {

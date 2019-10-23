@@ -1,12 +1,7 @@
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
-import axios from "axios";
+import axios from 'axios'
 import { Redirect } from "react-router-dom";
-
-
-const LoginForm = props => {
-  const { getFieldDecorator, validateFields } = props.form;
-
 
 const LoginForm = props => {
   const { getFieldDecorator, validateFields } = props.form;
@@ -16,15 +11,11 @@ const LoginForm = props => {
       if (!err) {
         console.log("Here are the form values", values.username);
         axios
-          .post('https://home-chore-tracker.herokuapp.com/api/auth/login', {
-            "email": values.username,
-            "password": values.password
-          })
+          .post('https://home-chore-tracker.herokuapp.com/api/auth/login', values)
           .then(res => {
             localStorage.setItem('token', res.data.token)
             props.history.push("/dashboard");
             alert(res.data.message)
-            console.log(res.data.token)
           })
           .catch(error => {
             alert(error.response.data.error);
@@ -32,12 +23,11 @@ const LoginForm = props => {
       }
     });
   };
-
   if (localStorage.getItem("token")) return <Redirect to="/dashboard" />;
   return (
     <Form onSubmit={handleSubmit} className="login-form">
       <Form.Item>
-        {getFieldDecorator("username", {
+        {getFieldDecorator("email", {
           rules: [{ required: true, message: "Please input your email!" }]
         })(
           <Input
