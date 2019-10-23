@@ -1,5 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
+import { useHistory } from 'react-router-dom';
 import {
   Layout,
   Icon,
@@ -28,7 +29,6 @@ const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget
     </Menu>
   );
 
-
   const content = (
     <div>
       <p>John completed a task!</p>
@@ -44,7 +44,10 @@ const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget
     </Menu>
   );
 
+  const redirect = useHistory();
+
   return (
+
     <Header
       className="header"
       style={{ background: "#fff", padding: 0, positon: "fixed" }}
@@ -54,7 +57,7 @@ const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget
         className="logout"
         onClick={() => {
           localStorage.removeItem("token");
-  
+          redirect.push('/')
         }}
       >
         Logout
