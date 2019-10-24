@@ -1,6 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import {
   Layout,
   Icon,
@@ -20,12 +20,27 @@ const profile = {
   user: "random"
 };
 
-const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget, setParent }) => {
+const AppHeader = ({
+  history,
+  setVisible,
+  visible,
+  handleMenu,
+  target,
+  setTarget,
+  setParent
+}) => {
   let username = profile.user ? profile.user.name : "";
   const menu = (
     <Menu>
       <Menu.Item>Profile</Menu.Item>
-      <Menu.Item>Log Out</Menu.Item>
+      <Menu.Item
+        onClick={() => {
+          localStorage.removeItem("token");
+          redirect.push("/");
+        }}
+      >
+        Log Out
+      </Menu.Item>
     </Menu>
   );
 
@@ -47,21 +62,10 @@ const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget
   const redirect = useHistory();
 
   return (
-
     <Header
       className="header"
       style={{ background: "#fff", padding: 0, positon: "fixed" }}
     >
-
-<button
-        className="logout"
-        onClick={() => {
-          localStorage.removeItem("token");
-          redirect.push('/')
-        }}
-      >
-        Logout
-      </button>
       <div className="left">
         <div>
           <h2>MineChore</h2>
