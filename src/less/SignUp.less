@@ -49,10 +49,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid green;
+    // border: 1px solid green;
+
+    ::-webkit-input-placeholder {
+      color: slategrey;
+    }
 
     Input {
       width: 400px;
+      border: 1px solid slategray;
+      
       @media (max-width: 500px) {
         max-width: 300px;
       }
