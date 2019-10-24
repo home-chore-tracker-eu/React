@@ -66,7 +66,7 @@ const Chore = props => {
     <Card
       hoverable="true"
       style={{
-        width: 330,
+        width: "330",
         marginTop: 16,
         marginRight: 10,
         boxShadow: "0 8px 10px rgba(0,0,0,.20)"

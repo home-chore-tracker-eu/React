@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Row, Col, Table, Icon } from "antd";
 import GM from "g2-mobile";
 import PanelBox from "./PanelBox";
-import { useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
 import createGM from "./gm";
-import { chartData, pieData, barData } from "./chart2.js";
+import { barData, pieData } from "./chart2.js";
 
 GM.Global.pixelRatio = 2;
 const Util = GM.Util;
@@ -12,9 +12,52 @@ const Util = GM.Util;
 var Shape = GM.Shape;
 var G = GM.G;
 
-
-
 const Home = () => {
+  const children = useSelector(state => state.children.children);
+  const families = useSelector(state => state.families.families);
+  const chores = useSelector(state => state.chores.chores)
+
+  const chartData = [];
+  if (children && families) {
+    for (let i = 0; i < children.length; i++) {
+      chartData.push({
+        name: `${children[i].name}`,
+        tem: `${children[i].chores.filter(chore => chore.parentMarkComplete)
+          .length * 10}`,
+        family: `${
+          families.find(family => children[i].family_id === family.id).surname
+        }`
+      });
+    }
+  }
+
+  // const barData = []
+  // if (children && families) {
+  //   for (let i = 0; i < children.length; i++) {
+  //     barData.push({
+  //       name: `${children[i].name}`,
+  //       tem: `${children[i].chores.filter(chore => chore.parentMarkComplete)
+  //         .length * 10}`,
+  //       family: `${
+  //         families.find(family => children[i].family_id === family.id).surname
+  //       }`
+  //     })
+  //   }
+  // }
+
+  const tableData = [];
+  if (children && families) {
+    for (let i = 0; i < children.length; i++) {
+      tableData.push({
+        no: i + 1,
+        name: `${children[i].name}`,
+        family: `The ${
+          families.find(family => children[i].family_id === family.id).surname
+        }s`
+      });
+    }
+  }
+
   Shape.registShape("point", "dashBoard", {
     getShapePoints: function(cfg) {
       var x = cfg.x;
@@ -55,7 +98,7 @@ const Home = () => {
       startAngle: -1.25 * Math.PI,
       endAngle: 0.25 * Math.PI
     });
-  
+
     chart.axis("value", {
       tickLine: {
         strokeStyle: "#b9e6ef",
@@ -67,7 +110,7 @@ const Home = () => {
       line: null
     });
     chart.axis("y", false);
-  
+
     chart.guide().arc([0, 1.05], [4.8, 1.05], {
       strokeStyle: "#18b7d6",
       lineWidth: 5,
@@ -110,7 +153,7 @@ const Home = () => {
       .shape("dashBoard");
     chart.render();
   }, 218);
-  
+
   const Line = createGM(chart => {
     var defs = {
       name: {
@@ -122,7 +165,7 @@ const Home = () => {
         min: 0
       }
     };
-  
+
     var label = {
       fill: "#979797",
       font: "14px san-serif",
@@ -131,7 +174,7 @@ const Home = () => {
     chart.axis("name", {
       label: function(text, index, total) {
         var cfg = Util.mix({}, label);
-  
+
         if (index === 0) {
           cfg.textAlign = "start";
         }
@@ -141,7 +184,7 @@ const Home = () => {
         return cfg;
       }
     });
-  
+
     chart.axis("tem", {
       label: {
         fontSize: 14
@@ -155,7 +198,7 @@ const Home = () => {
       .shape("smooth");
     chart.render();
   }, 200);
-  
+
   const Bar = createGM(chart => {
     chart.source(barData, {
       tem: {
@@ -179,7 +222,7 @@ const Home = () => {
       .color("family");
     chart.render();
   }, 320);
-  
+
   const columns = [
     {
       title: "No.",
@@ -196,58 +239,57 @@ const Home = () => {
       dataIndex: "family"
     }
   ];
+
+  // export const chartData = [
+  //   {"name": 'Kevin',"tem": 10,"family": "Francis"},
+  //   {"name": 'John',"tem": 22,"family": "Francis"},
+  //   {"name": 'Terry',"tem": 20,"family": "Francis"},
+  //   {"name": 'Mirabel',"tem": 26,"family": "Francis"},
+  //   {"name": 'Kevin',"tem": 20,"family": "Francis"},
+  //   {"name": 'John',"tem": 26,"family": "Francis"},
+
+  // ];
   
-  const tableData = [];
-  for (let i = 0; i < 4; i++) {
-    tableData.push({
-      no: i + 1,
-      name: `Kevin`,
-      family: "The Johnsons"
-    });
-  }
 
-    return (
-      <div>
-        <Row gutter={16} type="flex" justify="space-between">
-          <Col xs={24} md={14}>
-            <Row gutter={16} type="flex" justify="space-between">
-              <Col xs={24} md={8}></Col>
-              <Col xs={24} md={8}></Col>
-              <Col l={24} md={24}>
-                <PanelBox className="card-item">
-                  <Icon type="team" />
-                  <h2> 10 Tasks Assigned Since June</h2>
-                </PanelBox>
-              </Col>
-            </Row>
+  return (
+    <div>
+      <Row gutter={16} type="flex" justify="space-between">
+        <Col xs={24} md={14}>
+          <Row gutter={16} type="flex" justify="space-between">
+            <Col xs={24} md={8}></Col>
+            <Col xs={24} md={8}></Col>
+            <Col l={24} md={24}>
+              <PanelBox className="card-item">
+                <Icon type="team" />
+                <h2> {chores.length === 1? "1 Task Currently Assigned" : `${chores.length} Tasks Assigned`}</h2>
+              </PanelBox>
+            </Col>
+          </Row>
             <PanelBox title="Percentage Completion Rate">
-              <Bar data={barData} />
-            </PanelBox>
-          </Col>
-          <Col xs={24} md={10}>
-            <PanelBox title="Best Performers" bodyStyle={{ padding: 0 }}>
-              <Line data={chartData} />
-            </PanelBox>
-            <PanelBox
-              title="Overall Completion Rate"
-              bodyStyle={{ padding: 0 }}
-            >
-              <Pie data={pieData} />
-            </PanelBox>
-          </Col>
-        </Row>
+            <Bar data={chartData} />
+          </PanelBox>
+          
+        </Col>
+        <Col xs={24} md={10}>
+          <PanelBox title="Best Performers" bodyStyle={{ padding: 0 }}>
+            <Line data={barData} />
+          </PanelBox>
+          <PanelBox title="Overall Completion Rate" bodyStyle={{ padding: 0 }}>
+            <Pie data={pieData} />
+          </PanelBox>
+        </Col>
+      </Row>
 
-        <PanelBox title="Current Kids">
-          <Table
-            columns={columns}
-            dataSource={tableData}
-            pagination={{ pageSize: 50 }}
-            scroll={{ y: 240 }}
-          />
-        </PanelBox>
-      </div>
-    );
- 
-}
+      <PanelBox title="Current Kids">
+        <Table
+          columns={columns}
+          dataSource={tableData}
+          pagination={{ pageSize: 50 }}
+          scroll={{ y: 240 }}
+        />
+      </PanelBox>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
