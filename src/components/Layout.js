@@ -24,14 +24,12 @@ const DashboardLayout = ({
   return (
     <Layout theme="dark" style={{ minHeight: "100vh" }}>
       <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={broken => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
+        // breakpoint="lg"
+        // collapsedWidth="0"
+        // onBreakpoint={broken => {
+        //   console.log(broken);
+        // }}
+
         style={{
           overflow: "auto",
           height: "100vh",
