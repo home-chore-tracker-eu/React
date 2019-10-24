@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Icon, Avatar, Tag, Statistic, Row, Col } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { deleteChore } from "../store/actions";
 const { Meta } = Card;
 
@@ -9,7 +9,6 @@ const { Countdown } = Statistic;
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
 
 const Chore = props => {
-  const children = useSelector(state => state.children);
   const dispatch = useDispatch();
 
   console.log(props.chore)
@@ -37,7 +36,8 @@ const Chore = props => {
         width: 300,
         marginTop: 16,
         marginRight: 10,
-        boxShadow: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
+        boxShadow: "0 8px 10px rgba(0,0,0,.20)"
+        // boxShadow: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
         // borderRadius: "8px 8px 0 0"
       }}
       cover={

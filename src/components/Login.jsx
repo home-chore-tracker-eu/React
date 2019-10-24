@@ -23,7 +23,7 @@ const LoginForm = props => {
       }
     });
   };
-  if (localStorage.getItem("token")) return <Redirect to="/profile" />;
+  if (localStorage.getItem("token")) return <Redirect to="/dashboard" />;
   return (
     <Form onSubmit={handleSubmit} className="login-form">
       <Form.Item>
