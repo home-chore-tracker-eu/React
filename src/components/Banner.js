@@ -1,7 +1,24 @@
 import React from "react";
 import { Card, Statistic, Row, Col, Icon } from "antd";
+import { useSelector } from "react-redux";
 
 const Banner = props => {
+  const chores = useSelector(state => state.chores.chores);
+
+  const active =
+    (chores.filter(chore => chore.childMarkComplete).length / chores.length) *
+    100;
+  const idle =
+    (chores.filter(chore => !chore.childMarkComplete).length / chores.length) *
+    100;
+
+  const handleNumber = num => {
+    if (num) {
+      return active;
+    }
+    return 0;
+  };
+
   return (
     <div>
       <div className="banner-left">
@@ -33,8 +50,8 @@ const Banner = props => {
           <div className="card-bottom"></div>
           <p style={{ color: "white", fontFamily: "Muli" }}>CHORES CREATED</p>
           <Statistic
-            value={10}
-            precision={2}
+            value={chores.length}
+            precision={0}
             valueStyle={{ color: "#fff" }}
             style={{ color: "#fff", fontSize: "25% !important" }}
           />
@@ -43,10 +60,15 @@ const Banner = props => {
           >
             <Row gutter={8}>
               <Col span={12}>
-                <Card style = {{ borderRadius: "10px", backgroundColor: "rgb(230,247,255)"}}> 
+                <Card
+                  style={{
+                    borderRadius: "10px",
+                    backgroundColor: "rgb(230,247,255)"
+                  }}
+                >
                   <Statistic
-                    title="Active"
-                    value={11.28}
+                    title="ACTIVE OR COMPLETED"
+                    value={handleNumber(active)}
                     precision={2}
                     valueStyle={{ color: "#3f8600" }}
                     prefix={<Icon type="arrow-up" />}
@@ -55,10 +77,15 @@ const Banner = props => {
                 </Card>
               </Col>
               <Col span={12}>
-                <Card style = {{ borderRadius: "10px", backgroundColor: "rgb(230,247,255)"}}>
+                <Card
+                  style={{
+                    borderRadius: "10px",
+                    backgroundColor: "rgb(230,247,255)"
+                  }}
+                >
                   <Statistic
-                    title="Idle"
-                    value={9.3}
+                    title="IDLE"
+                    value={handleNumber(idle)}
                     precision={2}
                     valueStyle={{ color: "#cf1322" }}
                     prefix={<Icon type="arrow-down" />}

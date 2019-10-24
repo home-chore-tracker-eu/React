@@ -55,7 +55,9 @@ const AppHeader = ({ handleMenu }) => {
 
   const content = (
     <div>
-      <p>{`You have ${notification} new submitted chore${notification !== 1 ? "s" : ""} awaiting approval!`}</p>
+      <p>{`You have ${notification} new submitted chore${
+        notification !== 1 ? "s" : ""
+      } awaiting approval!`}</p>
     </div>
   );
 
