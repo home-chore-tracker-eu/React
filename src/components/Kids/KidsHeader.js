@@ -1,6 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import {
   Layout,
   Icon,
@@ -10,7 +10,6 @@ import {
   Avatar,
   Popover,
   Input,
-  Button
 } from "antd";
 
 const { Search } = Input;
@@ -20,7 +19,15 @@ const profile = {
   user: "random"
 };
 
-const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget, setParent }) => {
+const KidsHeader = ({
+  history,
+  setVisible,
+  visible,
+  handleMenu,
+  target,
+  setTarget,
+  setParent
+}) => {
   let username = profile.user ? profile.user.name : "";
   const menu = (
     <Menu>
@@ -31,33 +38,22 @@ const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget
 
   const content = (
     <div>
-      <p>John completed a task!</p>
-      <p>Mary missed the due date for a task!</p>
+      <p>You have a new task!</p>
     </div>
-  );
-
-  const buttonmenu = (
-    <Menu onClick={handleMenu}>
-      <Menu.Item key="Family">Family</Menu.Item>
-      <Menu.Item key="Child">Child</Menu.Item>
-      <Menu.Item key="Chore">Chore</Menu.Item>
-    </Menu>
   );
 
   const redirect = useHistory();
 
   return (
-
     <Header
       className="header"
       style={{ background: "#fff", padding: 0, positon: "fixed" }}
     >
-
-<button
+      <button
         className="logout"
         onClick={() => {
           localStorage.removeItem("token");
-          redirect.push('/')
+          redirect.push("/");
         }}
       >
         Logout
@@ -76,14 +72,6 @@ const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget
       </div>
 
       <div className="right">
-        <div className="header-button">
-          <Dropdown overlay={buttonmenu}>
-            <Button type="primary">
-              <Icon type="plus" /> Create New <Icon type="down" />
-            </Button>
-          </Dropdown>
-        </div>
-
         <div className="setting">
           <Badge className="header-icon">
             <Icon type="setting" />
@@ -92,7 +80,7 @@ const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget
 
         <div className="popover">
           <Popover content={content} trigger="click">
-            <Badge className="header-icon" count={2}>
+            <Badge className="header-icon" count={1}>
               <a href="#">
                 <Icon type="bell" />
               </a>
@@ -118,4 +106,4 @@ const AppHeader = ({ history, setVisible, visible, handleMenu, target, setTarget
   );
 };
 
-export default AppHeader;
+export default KidsHeader;

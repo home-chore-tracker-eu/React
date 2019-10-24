@@ -4,7 +4,7 @@ import { Layout, Menu, Icon } from "antd";
 import ChoresList from "./Chores";
 import Forms from "./Forms";
 import Performances from "./Performances";
-import { Route, Link } from "react-router-dom";
+import { Route, BrowserRouter as Router, Link } from "react-router-dom";
 const { Content, Footer, Sider } = Layout;
 
 const { SubMenu } = Menu;
@@ -84,6 +84,7 @@ const DashboardLayout = ({
               minHeight: "90vh"
             }}
           >
+            <Router>
             <Route
               exact
               path="/dashboard"
@@ -95,13 +96,15 @@ const DashboardLayout = ({
                   handleEditing={handleEditing}
                   editItem={editItem}
                   setEditItem={setEditItem}
-                  setVisible = {setVisible}
-                  setTarget = {setTarget}
-                  target = {target}
+                  setVisible={setVisible}
+                  setTarget={setTarget}
+                  target={target}
                 />
               )}
             />
+            
             <Route path="/dashboard/performances" component={Performances} />
+            </Router>
 
             <Forms
               visible={visible}

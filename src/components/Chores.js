@@ -10,9 +10,6 @@ const ChoresList = ({ editing, setEditing, handleEditing, setEditItem, setVisibl
   const children = useSelector(state => state.children.children);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => dispatch(fetchChores()), []);
-  useEffect(() => dispatch(fetchFamilies()), []);
-  useEffect(() => dispatch(fetchChildren()), []);
 
   return (
     <div className="chores">

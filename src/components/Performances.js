@@ -195,7 +195,7 @@ const columns = [
 ];
 
 const tableData = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 4; i++) {
   tableData.push({
     no: i + 1,
     name: `Kevin`,
