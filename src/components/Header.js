@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   Layout,
@@ -12,6 +13,7 @@ import {
   Input,
   Button
 } from "antd";
+import { statement } from "@babel/template";
 
 const { Search } = Input;
 const { Header } = Layout;
@@ -20,16 +22,23 @@ const profile = {
   user: "random"
 };
 
-const AppHeader = ({
-  history,
-  setVisible,
-  visible,
-  handleMenu,
-  target,
-  setTarget,
-  setParent
-}) => {
+const AppHeader = ({ handleMenu }) => {
   let username = profile.user ? profile.user.name : "";
+
+  const [notification, setNotification] = useState();
+  const chores = useSelector(state => state.chores.chores);
+  const children = useSelector(state => state.children.children);
+
+  useEffect(
+    () =>
+      setNotification(
+        chores.filter(
+          chore => chore.childMarkComplete === 1 && !chore.parentMarkComplete
+        ).length
+      ),
+    [chores]
+  );
+
   const menu = (
     <Menu>
       <Menu.Item>Profile</Menu.Item>
@@ -46,8 +55,7 @@ const AppHeader = ({
 
   const content = (
     <div>
-      <p>John completed a task!</p>
-      <p>Mary missed the due date for a task!</p>
+      <p>{`You have ${notification} new submitted chore${notification !== 1 ? "s" : ""} awaiting approval!`}</p>
     </div>
   );
 
@@ -96,10 +104,8 @@ const AppHeader = ({
 
         <div className="popover">
           <Popover content={content} trigger="click">
-            <Badge className="header-icon" count={2}>
-              <a href="#">
-                <Icon type="bell" />
-              </a>
+            <Badge className="header-icon" count={notification}>
+              <Icon type="bell" />
             </Badge>
           </Popover>
         </div>
