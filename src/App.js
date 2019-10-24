@@ -25,7 +25,8 @@ function App() {
 
   return (
     <>
-      <Route path="/" component={Login} />
+      <Route exact path="/" component={Login} />
+      <Route exact path="/signup" component={SignUp} />
       <Route
         exact
         path="/profile"

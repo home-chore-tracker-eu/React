@@ -28,7 +28,7 @@ const LoginForm = props => {
   };
   if (localStorage.getItem("token")) return <Redirect to="/profile" />;
   return (
-    <div className="login-wrapper">
+    <div className="wrapper">
       <div className="nav-signup">
         <img src="https://bit.ly/31Hjopt" alt="minechore"></img>
       </div>
