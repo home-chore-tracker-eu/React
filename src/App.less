@@ -2,20 +2,20 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.App-logo img {
+  width: 150px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+// .App-header {
+//   background-color: #282c34;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
 
 .App-link {
   color: #09d3ac;
@@ -35,12 +35,26 @@
   margin-top: 18px;
 }
 
-
-.login-form {
-  margin: 0 auto;
-  margin-top: 15%;
-  max-width: 300px;
+.wrapper {
+  height: 100vH;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .nav-signup {
+    margin: 20px;
+  }
 }
+.login-form {
+  // margin: 20 auto;
+  margin-top: 15%;
+  width: 300px;
+  @media (max-width: 500px) {
+    width: 90%;
+  }
+}
+
 .login-form-forgot {
   float: right;
 }
@@ -56,6 +70,7 @@
 }
 
 .header {
+  display: flex;
   position: fixed;
   right: 0;
   left: 0;
@@ -64,6 +79,9 @@
   box-shadow: 0 4px 2px -2px rgb(211, 211, 211);
   display: flex;
   width: 100%;
+  // @media (max-width: 1000px) {
+  //   flex-direction: column;
+  // }
 }
 
 .left {

@@ -8,7 +8,6 @@ import KidsDashboard from './components/Kids/KidsDashboard'
 import "./App.less";
 import MineChore from "./components/MineChore";
 import Login from "./components/Login";
-import "./App.less";
 import SignUp from './components/SignUp';
 
 function App() {
@@ -25,7 +24,8 @@ function App() {
 
   return (
     <>
-      <Route path="/" component={Login} />
+      <Route exact path="/" component={Login} />
+      <Route exact path="/signup" component={SignUp} />
       <Route
         exact
         path="/profile"

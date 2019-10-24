@@ -24,6 +24,12 @@ const DashboardLayout = ({
   return (
     <Layout theme="dark" style={{ minHeight: "100vh" }}>
       <Sider
+        // breakpoint="lg"
+        // collapsedWidth="0"
+        // onBreakpoint={broken => {
+        //   console.log(broken);
+        // }}
+
         style={{
           overflow: "auto",
           height: "100vh",
@@ -85,25 +91,25 @@ const DashboardLayout = ({
             }}
           >
             <Router>
-            <Route
-              exact
-              path="/dashboard"
-              render={props => (
-                <ChoresList
-                  {...props}
-                  editing={editing}
-                  setEditing={setEditing}
-                  handleEditing={handleEditing}
-                  editItem={editItem}
-                  setEditItem={setEditItem}
-                  setVisible={setVisible}
-                  setTarget={setTarget}
-                  target={target}
-                />
-              )}
-            />
-            
-            <Route path="/dashboard/performances" component={Performances} />
+              <Route
+                exact
+                path="/dashboard"
+                render={props => (
+                  <ChoresList
+                    {...props}
+                    editing={editing}
+                    setEditing={setEditing}
+                    handleEditing={handleEditing}
+                    editItem={editItem}
+                    setEditItem={setEditItem}
+                    setVisible={setVisible}
+                    setTarget={setTarget}
+                    target={target}
+                  />
+                )}
+              />
+
+              <Route path="/dashboard/performances" component={Performances} />
             </Router>
 
             <Forms
