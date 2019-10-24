@@ -14,7 +14,7 @@ const LoginForm = props => {
           .post('https://home-chore-tracker.herokuapp.com/api/auth/login', values)
           .then(res => {
             localStorage.setItem('token', res.data.token)
-            props.history.push("/dashboard");
+            props.history.push("/profile");
             alert(res.data.message)
           })
           .catch(error => {
@@ -23,7 +23,7 @@ const LoginForm = props => {
       }
     });
   };
-  if (localStorage.getItem("token")) return <Redirect to="/dashboard" />;
+  if (localStorage.getItem("token")) return <Redirect to="/profile" />;
   return (
     <Form onSubmit={handleSubmit} className="login-form">
       <Form.Item>

@@ -4,20 +4,13 @@ import Header from "./Header";
 import { fetchChores, fetchFamilies, fetchChildren } from "../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-const MineChore = () => {
+const MineChore = (props) => {
   const [visible, setVisible] = useState(false);
   const [target, setTarget] = useState("");
   const [editing, setEditing] = useState(false);
-  const [editItem, setEditItem] = useState()
-  const chores = useSelector(state => state.chores.chores);
-  const families = useSelector(state => state.families.families);
-  const children = useSelector(state => state.children.children);
-  const dispatch = useDispatch();
+  const [editItem, setEditItem] = useState({});
 
-
-  useEffect(() => dispatch(fetchChores()), [chores]);
-  useEffect(() => dispatch(fetchFamilies()), [families, dispatch]);
-  useEffect(() => dispatch(fetchChildren()), [children, dispatch]);
+  console.log(props)
 
   function handleMenu(e) {
     setVisible(true);
@@ -39,11 +32,10 @@ const MineChore = () => {
         target={target}
         setTarget={setTarget}
         handleMenu={handleMenu}
-        editing = {editing}
+        editing={editing}
         setEditing={setEditing}
-        editItem = {editItem}
-        setEditItem = {setEditItem}
-
+        editItem={editItem}
+        setEditItem={setEditItem}
       />
     </div>
   );

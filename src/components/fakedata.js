@@ -35,4 +35,3 @@ export const chores = [
   ];
   
   
-  export const children = []

@@ -10,7 +10,6 @@ import {
   Avatar,
   Popover,
   Input,
-  Button
 } from "antd";
 
 const { Search } = Input;
@@ -20,7 +19,7 @@ const profile = {
   user: "random"
 };
 
-const AppHeader = ({
+const KidsHeader = ({
   history,
   setVisible,
   visible,
@@ -33,30 +32,14 @@ const AppHeader = ({
   const menu = (
     <Menu>
       <Menu.Item>Profile</Menu.Item>
-      <Menu.Item
-        onClick={() => {
-          localStorage.removeItem("token");
-          redirect.push("/");
-        }}
-      >
-        Log Out
-      </Menu.Item>
+      <Menu.Item>Log Out</Menu.Item>
     </Menu>
   );
 
   const content = (
     <div>
-      <p>John completed a task!</p>
-      <p>Mary missed the due date for a task!</p>
+      <p>You have a new task!</p>
     </div>
-  );
-
-  const buttonmenu = (
-    <Menu onClick={handleMenu}>
-      <Menu.Item key="Family">Family</Menu.Item>
-      <Menu.Item key="Child">Child</Menu.Item>
-      <Menu.Item key="Chore">Chore</Menu.Item>
-    </Menu>
   );
 
   const redirect = useHistory();
@@ -66,6 +49,15 @@ const AppHeader = ({
       className="header"
       style={{ background: "#fff", padding: 0, positon: "fixed" }}
     >
+      <button
+        className="logout"
+        onClick={() => {
+          localStorage.removeItem("token");
+          redirect.push("/");
+        }}
+      >
+        Logout
+      </button>
       <div className="left">
         <div>
           <h2>MineChore</h2>
@@ -80,14 +72,6 @@ const AppHeader = ({
       </div>
 
       <div className="right">
-        <div className="header-button">
-          <Dropdown overlay={buttonmenu}>
-            <Button type="primary">
-              <Icon type="plus" /> Create New <Icon type="down" />
-            </Button>
-          </Dropdown>
-        </div>
-
         <div className="setting">
           <Badge className="header-icon">
             <Icon type="setting" />
@@ -96,7 +80,7 @@ const AppHeader = ({
 
         <div className="popover">
           <Popover content={content} trigger="click">
-            <Badge className="header-icon" count={2}>
+            <Badge className="header-icon" count={1}>
               <a href="#">
                 <Icon type="bell" />
               </a>
@@ -122,4 +106,4 @@ const AppHeader = ({
   );
 };
 
-export default AppHeader;
+export default KidsHeader;
