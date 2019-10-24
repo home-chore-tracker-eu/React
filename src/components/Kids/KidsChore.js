@@ -10,7 +10,7 @@ const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
 const Chore = props => {
   const dispatch = useDispatch();
 
-  const choreToBeMarked = { ...props.chore, completed: true };
+  const choreToBeMarked = { ...props.chore, childMarkComplete: true };
   const handleComplete = e => {
     e.preventDefault();
     dispatch(editChore(props.chore.id, choreToBeMarked));

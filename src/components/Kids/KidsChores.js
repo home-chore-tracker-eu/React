@@ -8,6 +8,7 @@ const KidsChores = props => {
   const children = useSelector(state => state.children.children);
   const [loading, setLoading] = useState(true);
   const [kidsChores, setKidsChores] = useState();
+  const [score, setScore] = useState();
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -22,9 +23,18 @@ const KidsChores = props => {
       });
   }, [props.match.params.id]);
 
+  const handleCalculate = e => {
+    const scores = kidsChores.filter(
+      chore => chore.parentMarkComplete && chore.childMarkComplete
+    );
+    setScore(scores.length * 10);
+  };
+
   if (!loading) {
     return (
       <div className="chores">
+        <button onClick={handleCalculate}>Calculate Score</button>
+        <p>{score}</p>
         {kidsChores.map(chore => (
           <Chore key={chore.id} chore={chore} children={children} />
         ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Icon, Avatar, Tag, Statistic, Row, Col } from "antd";
+import { Card, Icon, Avatar, Tag, Statistic, Row, Col, Alert } from "antd";
 import {  useDispatch } from "react-redux";
 import { deleteChore } from "../store/actions";
 const { Meta } = Card;
@@ -67,6 +67,13 @@ const Chore = props => {
         <Icon type="edit" key="Chore" onClick={handleEditing} />
       ]}
     >
+
+{props.chore.childMarkComplete && !props.chore.parentMarkComplete &&  <Alert
+      message="Seeking Approval"
+      description="This chore has been marked complete by the child."
+      type="info"
+      showIcon
+    />}
       <Avatar src="https://thecutebabycontest.com/wp-content/uploads/2019/03/winner-3-1552330890.jpg" />
       <br />
       <br />
