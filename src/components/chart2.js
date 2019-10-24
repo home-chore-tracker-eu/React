@@ -1,3 +1,7 @@
+import React from 'react'
+import { useSelector} from 'react-redux'
+
+
 export const chartData = [
     {"name": 'Kevin',"tem": 10,"family": "Francis"},
     {"name": 'John',"tem": 22,"family": "Francis"},
@@ -16,3 +20,6 @@ export const chartData = [
     {"name":"Mirabel","tem":18.2,"family":"Francis"},
     {"name":"Kevin","tem":6.9,"family":"Francis"},
   ];
+
+
+  

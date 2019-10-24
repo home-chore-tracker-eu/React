@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import PrivateRoute from "../src/components/PrivateRoute";
+import SecondPrivateRoute from '../src/components/SecondPrivateRoute'
 import Profile from "./components/Profile";
 import {fetchChildren, fetchChores, fetchFamilies} from './store/actions'
 import KidsDashboard from './components/Kids/KidsDashboard'
@@ -25,10 +26,9 @@ function App() {
 
   return (
     <>
-      <Route path="/" component={Login} />
+      <Route exact path="/" component={Login} />
       <Route
-        exact
-        path="/profile"
+        exact path="/profile"
         render={props => (
           <Profile
             {...props}
@@ -39,8 +39,8 @@ function App() {
           />
         )}
       />
-        <PrivateRoute exact path="/dashboard" component={MineChore} />
-        <PrivateRoute exact path="/kids/:id" component={KidsDashboard} />
+        <PrivateRoute path="/dashboard" component={MineChore} />
+        <SecondPrivateRoute path="/kids/:id" component={KidsDashboard} />
     </>
   );
 }
