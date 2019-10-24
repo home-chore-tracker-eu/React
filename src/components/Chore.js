@@ -16,9 +16,11 @@ const { Meta } = Card;
 
 const { Countdown } = Statistic;
 
-const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
-
 const Chore = props => {
+  const deadline = props.chore.childMarkComplete
+    ? 0
+    : Date.parse(props.chore.duedate);
+
   const dispatch = useDispatch();
 
   console.log(props.chore);
@@ -75,7 +77,6 @@ const Chore = props => {
         <div>
           <div style={{ marginTop: "20px" }}></div>
           <Row gutter={24}>
-          
             <Col span={12}>
               <Countdown
                 title="Deadline"
