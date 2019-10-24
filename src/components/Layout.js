@@ -6,7 +6,7 @@ import Forms from "./Forms";
 import Performances from "./Performances";
 import { Route, Link } from "react-router-dom";
 const { Content, Footer, Sider } = Layout;
-// const {Title} = Typography
+
 const { SubMenu } = Menu;
 
 const DashboardLayout = ({
