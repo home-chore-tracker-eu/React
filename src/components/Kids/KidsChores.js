@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Chore from "./KidsChore";
+import KidsChore from "./KidsChore";
 import { Skeleton, List, Avatar } from "antd";
 import axiosWithAuth from "../../axios";
 
@@ -36,7 +36,7 @@ const KidsChores = props => {
         <button onClick={handleCalculate}>Calculate Score</button>
         <p>{score}</p>
         {kidsChores.map(chore => (
-          <Chore key={chore.id} chore={chore} children={children} />
+          <KidsChore key={chore.id} chore={chore} children={children} />
         ))}
       </div>
     );

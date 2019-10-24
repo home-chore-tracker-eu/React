@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DashboardLayout from "./Layout";
 import Header from "./Header";
-import { fetchChores, fetchFamilies, fetchChildren } from "../store/actions";
-import { useDispatch, useSelector } from "react-redux";
+
 
 const MineChore = (props) => {
   const [visible, setVisible] = useState(false);
