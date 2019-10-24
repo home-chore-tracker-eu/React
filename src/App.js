@@ -9,6 +9,7 @@ import "./App.less";
 import MineChore from "./components/MineChore";
 import Login from "./components/Login";
 import "./App.less";
+import SignUp from './components/SignUp';
 
 function App() {
   const [kid, setKid] = useState(false);
