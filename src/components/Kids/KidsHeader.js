@@ -19,15 +19,7 @@ const profile = {
   user: "random"
 };
 
-const KidsHeader = ({
-  history,
-  setVisible,
-  visible,
-  handleMenu,
-  target,
-  setTarget,
-  setParent
-}) => {
+const KidsHeader = () => {
   let username = profile.user ? profile.user.name : "";
   const menu = (
     <Menu>
@@ -49,15 +41,6 @@ const KidsHeader = ({
       className="header"
       style={{ background: "#fff", padding: 0, positon: "fixed" }}
     >
-      <button
-        className="logout"
-        onClick={() => {
-          localStorage.removeItem("token");
-          redirect.push("/");
-        }}
-      >
-        Logout
-      </button>
       <div className="left">
         <div>
           <h2>MineChore</h2>

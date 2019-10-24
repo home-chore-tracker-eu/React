@@ -1,6 +1,10 @@
 import axiosWithAuth from "../../axios/index";
 
 //ACTION TYPES
+export const FETCH_USER_START = "FETCH_USER_START";
+export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
+export const FETCH_USER_FAILURE = "FETCH_USER_FAILURE";
+
 export const FETCH_CHORES_START = "FETCH_CHORES_START";
 export const FETCH_CHORES_SUCCESS = "FETCH_CHORES_SUCCESS";
 export const FETCH_CHORES_FAILURE = "FETCH_CHORES_FAILURE";
@@ -51,6 +55,24 @@ export const DELETE_FAMILY_FAILURE = "DELETE_FAMILY_FAILURE";
 
 //ACTION CREATORS
 //CHORES
+
+export const fetchUser = () => dispatch => {
+  dispatch({ type: FETCH_USER_START });
+  axiosWithAuth()
+    .get(`/users/me`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: FETCH_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err.response);
+      dispatch({
+        type: FETCH_USER_FAILURE,
+        payload: err.response
+      });
+    });
+};
+
 export const fetchChores = () => dispatch => {
   dispatch({ type: FETCH_CHORES_START });
   axiosWithAuth()
@@ -73,8 +95,9 @@ export const postNewChore = chore => dispatch => {
   axiosWithAuth()
     .post(`/chores`, chore)
     .then(res => {
-      console.log(res.data)
-      dispatch({ type: POST_NEW_CHORE_SUCCESS })})
+      console.log(res.data);
+      dispatch({ type: POST_NEW_CHORE_SUCCESS });
+    })
     .catch(err =>
       dispatch({ type: POST_NEW_CHORE_FAILURE, payload: err.response })
     );
@@ -174,10 +197,10 @@ export const postNewFamily = family => dispatch => {
   dispatch({ type: POST_NEW_FAMILY_START });
   axiosWithAuth()
     .post(`/families`, family)
-    .then((res) => {
-      console.log(res.data)
-      dispatch({ type: POST_NEW_FAMILY_SUCCESS })}
-    )
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: POST_NEW_FAMILY_SUCCESS });
+    })
     .catch(err =>
       dispatch({
         type: POST_NEW_FAMILY_FAILURE,

@@ -1,27 +1,36 @@
 import React from "react";
-import { Card, Statistic, Row, Col, Icon } from "antd";
+import { Card, Statistic, Row, Col, Icon, Timeline } from "antd";
 import { useSelector } from "react-redux";
 
 const Banner = props => {
   const chores = useSelector(state => state.chores.chores);
 
   const active =
-    (chores.filter(chore => chore.childMarkComplete).length / chores.length) *
+    (chores.filter(chore => chore.childMarkComplete === 1).length /
+      chores.length) *
     100;
   const idle =
-    (chores.filter(chore => !chore.childMarkComplete).length / chores.length) *
+    (chores.filter(chore => chore.childMarkComplete === 0).length /
+      chores.length) *
     100;
 
-  const handleNumber = num => {
+  const handleActive = num => {
     if (num) {
       return active;
     }
     return 0;
   };
 
+  const handleIdle = num => {
+    if (num) {
+      return idle;
+    }
+    return 0;
+  };
+
   return (
-    <div>
-      <div className="banner-left">
+    <Row gutter={24}>
+      <Col span={18}>
         <Card
           title="PARENT OVERVIEW"
           headStyle={{
@@ -33,7 +42,7 @@ const Banner = props => {
             float: "left"
           }}
           style={{
-            width: "66%",
+            width: "100%",
             marginTop: 16,
             marginRight: 10,
             borderRadius: "10px",
@@ -68,7 +77,7 @@ const Banner = props => {
                 >
                   <Statistic
                     title="ACTIVE OR COMPLETED"
-                    value={handleNumber(active)}
+                    value={handleActive(active)}
                     precision={2}
                     valueStyle={{ color: "#3f8600" }}
                     prefix={<Icon type="arrow-up" />}
@@ -85,7 +94,7 @@ const Banner = props => {
                 >
                   <Statistic
                     title="IDLE"
-                    value={handleNumber(idle)}
+                    value={handleIdle(idle)}
                     precision={2}
                     valueStyle={{ color: "#cf1322" }}
                     prefix={<Icon type="arrow-down" />}
@@ -96,8 +105,32 @@ const Banner = props => {
             </Row>
           </footer>
         </Card>
-      </div>
-    </div>
+      </Col>
+
+      <Col span={6}>
+        <Card
+          title="Recent Activity"
+          style={{
+            boxShadow: "0 8px 10px rgba(0,0,0,.08)",
+            borderRadius: "10px",
+            marginTop: "5%",
+            overflowY: "auto"
+          }}
+        >
+          <Timeline mode="right">
+            <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
+            <Timeline.Item>
+              Solve initial network problems 2015-09-01
+            </Timeline.Item>
+            <Timeline.Item>Technical testing 2015-09-01</Timeline.Item>
+            <Timeline.Item>
+              Network problems being solved 2015-09-01
+            </Timeline.Item>
+          </Timeline>
+          ,
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

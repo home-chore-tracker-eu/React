@@ -13,6 +13,7 @@ const Chore = props => {
   const choreToBeMarked = { ...props.chore, childMarkComplete: true };
   const handleComplete = e => {
     e.preventDefault();
+    props.setSuccessBox(true)
     dispatch(editChore(props.chore.id, choreToBeMarked));
   };
 
