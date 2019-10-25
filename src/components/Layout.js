@@ -3,7 +3,6 @@ import "antd/dist/antd.css";
 import { Layout, Menu, Icon } from "antd";
 import ArchivesChores from "../components/Archives/ArchivesChores";
 import ChoresList from "./Chores";
-import ArchivesChores from "../components/Archives/ArchivesChores";
 import Forms from "./Forms";
 import Performances from "./Performances";
 import { Route, BrowserRouter as Router, Link } from "react-router-dom";
