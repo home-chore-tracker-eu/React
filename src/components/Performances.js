@@ -3,8 +3,17 @@ import { Row, Col, Table, Icon } from "antd";
 import GM from "g2-mobile";
 import PanelBox from "./PanelBox";
 import { useSelector } from "react-redux";
+import {
+  BarChart,
+
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from "recharts";
 import createGM from "./gm";
-import { barData, pieData } from "./chart2.js";
+import { pieData } from "./chart2.js";
 
 GM.Global.pixelRatio = 2;
 const Util = GM.Util;
@@ -15,7 +24,7 @@ var G = GM.G;
 const Home = () => {
   const children = useSelector(state => state.children.children);
   const families = useSelector(state => state.families.families);
-  const chores = useSelector(state => state.chores.chores)
+  const chores = useSelector(state => state.chores.chores);
 
   const chartData = [];
   if (children && families) {
@@ -31,19 +40,31 @@ const Home = () => {
     }
   }
 
-  // const barData = []
-  // if (children && families) {
-  //   for (let i = 0; i < children.length; i++) {
-  //     barData.push({
-  //       name: `${children[i].name}`,
-  //       tem: `${children[i].chores.filter(chore => chore.parentMarkComplete)
-  //         .length * 10}`,
-  //       family: `${
-  //         families.find(family => children[i].family_id === family.id).surname
-  //       }`
-  //     })
-  //   }
-  // }
+  const barData = [];
+  if (children && families) {
+    for (let i = 0; i < children.length; i++) {
+      barData.push({
+        name: `${children[i].name}`,
+        tem: children[i].chores.filter(chore => chore.parentMarkComplete)
+          .length * 100,
+        family: `${
+          families.find(family => children[i].family_id === family.id).surname
+        }`
+      });
+    }
+  }
+
+  const data = [];
+  if(children && families) {
+    for(let i = 0; i < children.length; i++) {
+      data.push({
+        name: `${children[i].name}`,
+        rate: `${children[i].chores.filter(chore => chore.parentMarkComplete)
+          .length * 100}`
+      })
+    }
+
+  }
 
   const tableData = [];
   if (children && families) {
@@ -249,7 +270,6 @@ const Home = () => {
   //   {"name": 'John',"tem": 26,"family": "Francis"},
 
   // ];
-  
 
   return (
     <div>
@@ -261,17 +281,33 @@ const Home = () => {
             <Col l={24} md={24}>
               <PanelBox className="card-item">
                 <Icon type="team" />
-                <h2> {chores.length === 1? "1 Task Currently Assigned" : `${chores.length} Tasks Assigned`}</h2>
+                <h2>
+                  {" "}
+                  {chores.length === 1
+                    ? "1 Task Currently Assigned"
+                    : `${chores.length} Tasks Currently Assigned`}
+                </h2>
               </PanelBox>
             </Col>
           </Row>
-            <PanelBox title="Percentage Completion Rate">
-            <Bar data={chartData} />
+          <PanelBox title="Percentage Completion Rate Per Child">
+            <BarChart
+              width={600}
+              height={300}
+              data={data}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <XAxis dataKey="name" />
+              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="rate" fill="#8884d8" />
+            </BarChart>
           </PanelBox>
-          
         </Col>
         <Col xs={24} md={10}>
-          <PanelBox title="Best Performers" bodyStyle={{ padding: 0 }}>
+          <PanelBox title="Best Performers (Points)" bodyStyle={{ padding: 0 }}>
             <Line data={barData} />
           </PanelBox>
           <PanelBox title="Overall Completion Rate" bodyStyle={{ padding: 0 }}>

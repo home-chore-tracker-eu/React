@@ -10,7 +10,7 @@ import {
   Alert,
   Button
 } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteChore, editChore, addActivity } from "../store/actions";
 import moment from "moment";
 const { Meta } = Card;
@@ -21,6 +21,9 @@ const Chore = props => {
   const deadline = props.chore.childMarkComplete
     ? 0
     : Date.parse(props.chore.duedate);
+
+  const children = useSelector(state => state.children.children)
+
 
   const dispatch = useDispatch();
 
@@ -130,7 +133,7 @@ const Chore = props => {
       <br />
       <Meta title={props.chore.title} description={props.chore.description} />
       <div className="card-bottom">
-        <div className="assigned">Assigned to:{}</div>
+        <div className="assigned">Assigned to: <strong>{children.length > 0 ? (children.find(child => child.id === props.chore.child_id)).name : ""}</strong></div>
         <div className="tag">
           <Tag color="green">On schedule</Tag>
         </div>
