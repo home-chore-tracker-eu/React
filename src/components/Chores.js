@@ -13,7 +13,7 @@ const ChoresList = ({ editing, setEditing, handleEditing, setEditItem, setVisibl
   return (
     <>
     <Banner/>
-    <div className="chores">
+    <div className="dashboard-chores">
       {chores.chores.map(chore => (
         <Chore
           key={chore.id}

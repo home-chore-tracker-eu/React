@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import { Layout, Menu, Icon } from "antd";
 import ArchivesChores from "../components/Archives/ArchivesChores";
 import ChoresList from "./Chores";
+import ArchivesChores from "../components/Archives/ArchivesChores";
 import Forms from "./Forms";
 import Performances from "./Performances";
 import { Route, BrowserRouter as Router, Link } from "react-router-dom";
@@ -24,7 +25,13 @@ const DashboardLayout = ({
 }) => {
   return (
     <Layout theme="dark" style={{ minHeight: "100vh" }}>
-      <Sider
+      <Sider className="sider"
+        breakpoint="md"
+        // collapsedWidth="0"
+        // onBreakpoint={broken => {
+        //   console.log(broken);
+        // }}
+
         style={{
           overflow: "auto",
           height: "100vh",
@@ -46,7 +53,7 @@ const DashboardLayout = ({
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/dashboard/performances">
+            <Link to="/performances">
               <Icon type="pie-chart" theme="filled" />
               <span>Performances</span>
             </Link>
@@ -91,7 +98,6 @@ const DashboardLayout = ({
               minHeight: "90vh"
             }}
           >
-           
             <Route
               exact
               path="/dashboard"
@@ -112,7 +118,6 @@ const DashboardLayout = ({
             
             <Route path="/dashboard/performances" component={Performances}/>
             <Route path="/dashboard/archives" component={ArchivesChores} />
-            
 
             <Forms
               visible={visible}

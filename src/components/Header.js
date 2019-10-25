@@ -76,8 +76,8 @@ const AppHeader = ({ handleMenu }) => {
       style={{ background: "#fff", padding: 0, positon: "fixed" }}
     >
       <div className="left">
-        <div>
-          <h2>MineChore</h2>
+        <div className="App-logo">
+          <img src="https://bit.ly/31Hjopt" alt="minechore"></img>
         </div>
       </div>
 
@@ -85,7 +85,7 @@ const AppHeader = ({ handleMenu }) => {
         <div className="header-button">
           <Dropdown overlay={buttonmenu}>
             <Button type="primary">
-              <Icon type="plus" /> Create New <Icon type="down" />
+              <Icon type="plus" /> New <Icon type="down" />
             </Button>
           </Dropdown>
         </div>

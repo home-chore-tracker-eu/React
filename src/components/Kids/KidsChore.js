@@ -6,7 +6,7 @@ const { Meta } = Card;
 
 const { Countdown } = Statistic;
 
-const Chore = props => {
+const KidsChore = props => {
   const dispatch = useDispatch();
 
   const deadline = props.chore.childMarkComplete && props.parentMarkCompleted
@@ -66,4 +66,4 @@ const Chore = props => {
   );
 };
 
-export default Chore;
+export default KidsChore;

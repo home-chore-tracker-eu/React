@@ -3,29 +3,51 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.App-logo img {
+  width: 150px;
+  @media (max-width: 500px) {
+    width: 100px;
+  }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+// .App-header {
+//   background-color: #282c34;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
 
 .App-link {
   color: #09d3ac;
+}
+
+// Profile.js
+
+.parents-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.kids-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    padding: 10px;
+  }
 }
 
 /* aside, .ant-menu, .ant-layout-sider-children {
   background-color: #3BDC99
   color: white;
 } */
+
 
 .ant-menu-item, .ant-menu-submenu {
   text-align: left;
@@ -36,12 +58,26 @@
   margin-top: 18px;
 }
 
-
-.login-form {
-  margin: 0 auto;
-  margin-top: 15%;
-  max-width: 300px;
+.wrapper {
+  height: 100vH;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .nav-signup {
+    margin: 20px;
+  }
 }
+.login-form {
+  // margin: 20 auto;
+  margin-top: 15%;
+  width: 300px;
+  @media (max-width: 500px) {
+    width: 90%;
+  }
+}
+
 .login-form-forgot {
   float: right;
 }
@@ -57,6 +93,7 @@
 }
 
 .header {
+  display: flex;
   position: fixed;
   right: 0;
   left: 0;
@@ -65,12 +102,32 @@
   box-shadow: 0 4px 2px -2px rgb(211, 211, 211);
   display: flex;
   width: 100%;
+  @media (max-width: 800px) {
+    padding: 20px;
+    // right: 10;
+    // left: 50;
+    // top: 50;
+    // z-index: 500;
+    // position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }
+
+// .jayne-header {
+//   border: 2px solid pink;
+//   @media (max-width: 800px) {
+//     display: flex;
+//     flex-wrap: wrap;
+
+//   }
+// }
 
 .left {
   width: 50%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .right {
@@ -104,6 +161,11 @@
   justify-content: center;
 }
 
+.dashboard-chores {
+  display: flex;
+  margin-top: 1vh;
+
+}
 
 #root > div > section > section > main {
   margin-top: 8vh !important;
