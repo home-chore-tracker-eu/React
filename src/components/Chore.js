@@ -23,7 +23,6 @@ const Chore = props => {
 
   const dispatch = useDispatch();
 
-  console.log(props.chore);
 
   const handleDelete = e => {
     e.preventDefault();
