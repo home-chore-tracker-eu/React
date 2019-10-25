@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchChores, fetchFamilies, fetchChildren } from "../store/actions";
+import React from "react";
+import { useSelector } from "react-redux";
+import Banner from './Banner'
 import Chore from "./Chore";
 
 const ChoresList = ({ editing, setEditing, handleEditing, setEditItem, setVisible, setTarget, target }) => {
   const chores = useSelector(state => state.chores);
-  const families = useSelector(state => state.families);
-  const dispatch = useDispatch();
   const children = useSelector(state => state.children.children);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
 
   return (
-    <div className="chores">
+    <>
+    <Banner/>
+    <div className="dashboard-chores">
       {chores.chores.map(chore => (
         <Chore
           key={chore.id}
@@ -29,6 +29,7 @@ const ChoresList = ({ editing, setEditing, handleEditing, setEditItem, setVisibl
         />
       ))}
     </div>
+    </>
   );
 };
 

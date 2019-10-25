@@ -2,6 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Layout, Menu, Icon } from "antd";
 import ChoresList from "./Chores";
+import ArchivesChores from "../components/Archives/ArchivesChores";
 import Forms from "./Forms";
 import Performances from "./Performances";
 import { Route, BrowserRouter as Router, Link } from "react-router-dom";
@@ -51,9 +52,15 @@ const DashboardLayout = ({
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Link to="/dashboard/performances">
+            <Link to="/performances">
               <Icon type="pie-chart" theme="filled" />
               <span>Performances</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <Link to="/archives">
+              <Icon type="profile" theme="filled" />
+              <span>Archives</span>
             </Link>
           </Menu.Item>
 
@@ -90,27 +97,26 @@ const DashboardLayout = ({
               minHeight: "90vh"
             }}
           >
-            <Router>
-              <Route
-                exact
-                path="/dashboard"
-                render={props => (
-                  <ChoresList
-                    {...props}
-                    editing={editing}
-                    setEditing={setEditing}
-                    handleEditing={handleEditing}
-                    editItem={editItem}
-                    setEditItem={setEditItem}
-                    setVisible={setVisible}
-                    setTarget={setTarget}
-                    target={target}
-                  />
-                )}
-              />
+            <Route
+              exact
+              path="/dashboard"
+              render={props => (
+                <ChoresList
+                  {...props}
+                  editing={editing}
+                  setEditing={setEditing}
+                  handleEditing={handleEditing}
+                  editItem={editItem}
+                  setEditItem={setEditItem}
+                  setVisible={setVisible}
+                  setTarget={setTarget}
+                  target={target}
+                />
+              )}
+            />
 
-              <Route path="/dashboard/performances" component={Performances} />
-            </Router>
+            <Route exact path="/performances" component={Performances} />
+            <Route path="/archives" component={ArchivesChores} />
 
             <Forms
               visible={visible}

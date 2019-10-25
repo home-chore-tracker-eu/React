@@ -11,10 +11,7 @@ const LoginForm = props => {
       if (!err) {
         console.log("Here are the form values", values.username);
         axios
-          .post(
-            "https://home-chore-tracker.herokuapp.com/api/auth/login",
-            values
-          )
+          .post("https://minechore.herokuapp.com/api/auth/login", values)
           .then(res => {
             localStorage.setItem("token", res.data.token);
             props.history.push("/profile");
@@ -26,7 +23,7 @@ const LoginForm = props => {
       }
     });
   };
-  if (localStorage.getItem("token")) return <Redirect to="/profile" />;
+  if (localStorage.getItem("token")) return <Redirect to="/dashboard" />;
   return (
     <div className="wrapper">
       <div className="nav-signup">
