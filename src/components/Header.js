@@ -41,7 +41,9 @@ const AppHeader = ({ handleMenu }) => {
 
   const menu = (
     <Menu>
-      <Menu.Item><Link to ="/">Profile Page</Link></Menu.Item>
+      <Menu.Item>
+        <Link to="/">Profile Page</Link>
+      </Menu.Item>
       <Menu.Item
         onClick={() => {
           localStorage.removeItem("token");
@@ -91,7 +93,6 @@ const AppHeader = ({ handleMenu }) => {
           </Dropdown>
         </div>
 
-
         <div className="popover">
           <Popover content={content} trigger="click">
             <Badge className="header-icon" count={notification}>
@@ -103,10 +104,7 @@ const AppHeader = ({ handleMenu }) => {
         <div className="dropdown">
           <Dropdown overlay={menu}>
             <a className="ant-dropdown-link" href="#">
-              <Avatar
-                src="https://www.freakmusic.co.uk/blog/wp-content/uploads/2017/03/Jayne-Carmichael-Norrie-209x300.jpg"
-                style={{ verticalAlign: "middle" }}
-              >
+              <Avatar src={user.pictureURL} style={{ verticalAlign: "middle" }}>
                 {username}
               </Avatar>{" "}
               <Icon type="down" />

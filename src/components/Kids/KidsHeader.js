@@ -56,16 +56,6 @@ const KidsHeader = () => {
 
       <div className="right">
 
-        <div className="popover">
-          <Popover content={content} trigger="click">
-            <Badge className="header-icon" count={1}>
-              <a href="#">
-                <Icon type="bell" />
-              </a>
-            </Badge>
-          </Popover>
-        </div>
-
         <div className="dropdown">
           <Dropdown overlay={menu}>
             <a className="ant-dropdown-link" href="#">

@@ -25,11 +25,7 @@ const Profile = ({ setKid, parent }) => {
             <Avatar
               size={150}
               icon="user"
-              src={
-                user.pictureURL
-                  ? user.pictureURL
-                  : "https://www.freakmusic.co.uk/blog/wp-content/uploads/2017/03/Jayne-Carmichael-Norrie-209x300.jpg"
-              }
+              src={user.pictureURL ? user.pictureURL : null}
               className="profile-avatar"
             />
           </Link>
@@ -42,7 +38,6 @@ const Profile = ({ setKid, parent }) => {
               <Avatar
                 size={150}
                 icon="user"
-                src="https://thecutebabycontest.com/wp-content/uploads/2019/03/winner-3-1552330890.jpg"
                 onClick={() => setKid(child)}
                 className="profile-avatar kids-profile-avatar"
               />

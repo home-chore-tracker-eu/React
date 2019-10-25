@@ -4,7 +4,6 @@ import GM from "g2-mobile";
 import PanelBox from "./PanelBox";
 import { useSelector } from "react-redux";
 import createGM from "./gm";
-import { pieData } from "./chart2.js";
 
 GM.Global.pixelRatio = 2;
 const Util = GM.Util;
