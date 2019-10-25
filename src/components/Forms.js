@@ -119,7 +119,7 @@ const Forms = ({
                     rules: [
                       {
                         required: true,
-                        message: "Please enter the name of your family"
+                        message: "Please enter details of the chore"
                       }
                     ]
                   })(

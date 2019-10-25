@@ -23,8 +23,8 @@ const DashboardLayout = ({
 }) => {
   return (
     <Layout theme="dark" style={{ minHeight: "100vh" }}>
-      <Sider
-        // breakpoint="lg"
+      <Sider className="sider"
+        breakpoint="md"
         // collapsedWidth="0"
         // onBreakpoint={broken => {
         //   console.log(broken);

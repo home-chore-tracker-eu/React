@@ -4,6 +4,9 @@
 
 .App-logo img {
   width: 150px;
+  @media (max-width: 500px) {
+    width: 100px;
+  }
 }
 
 // .App-header {
@@ -21,10 +24,29 @@
   color: #09d3ac;
 }
 
+// Profile.js
+
+.parents-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.kids-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    padding: 10px;
+  }
+}
+
 /* aside, .ant-menu, .ant-layout-sider-children {
   background-color: #3BDC99
   color: white;
 } */
+
 
 .ant-menu-item, .ant-menu-submenu {
   text-align: left;
@@ -79,15 +101,32 @@
   box-shadow: 0 4px 2px -2px rgb(211, 211, 211);
   display: flex;
   width: 100%;
-  // @media (max-width: 1000px) {
-  //   flex-direction: column;
-  // }
+  @media (max-width: 800px) {
+    padding: 20px;
+    // right: 10;
+    // left: 50;
+    // top: 50;
+    // z-index: 500;
+    // position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }
+
+// .jayne-header {
+//   border: 2px solid pink;
+//   @media (max-width: 800px) {
+//     display: flex;
+//     flex-wrap: wrap;
+
+//   }
+// }
 
 .left {
   width: 50%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .right {
