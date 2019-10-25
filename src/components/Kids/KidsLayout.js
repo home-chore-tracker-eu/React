@@ -30,12 +30,6 @@ const KidsLayout = ({ editing, setEditing }) => {
               <span>My Chores</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="2">
-            <Link to="/dashboard/performances">
-              <Icon type="pie-chart" theme="filled" />
-              <span>Performances</span>
-            </Link>
-          </Menu.Item>
         </Menu>
       </Sider>
       {/* </div> */}

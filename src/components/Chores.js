@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import {Card } from "antd"
 import Banner from './Banner'
 import Chore from "./Chore";
 

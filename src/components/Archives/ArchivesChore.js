@@ -44,7 +44,7 @@ const Chore = props => {
       {props.chore.childMarkComplete && props.chore.parentMarkComplete ? (
         <Alert
           message="Completed"
-          description="This chore has been completed."
+          description="This chore was completed with 10 points assigned."
           type="success"
           showIcon
         />

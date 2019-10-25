@@ -10,18 +10,21 @@ import {
   Alert,
   Button
 } from "antd";
-import { useDispatch } from "react-redux";
-import { deleteChore, editChore } from "../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteChore, editChore, addActivity } from "../store/actions";
+import moment from "moment";
 const { Meta } = Card;
 
 const { Countdown } = Statistic;
 
-const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
-
 const Chore = props => {
-  const dispatch = useDispatch();
+  const deadline = props.chore.childMarkComplete
+    ? 0
+    : Date.parse(props.chore.duedate);
 
-  console.log(props.chore);
+  const children = useSelector(state => state.children.children);
+
+  const dispatch = useDispatch();
 
   const handleDelete = e => {
     e.preventDefault();
@@ -32,6 +35,13 @@ const Chore = props => {
   const parentMarkComplete = e => {
     e.preventDefault();
     dispatch(editChore(props.chore.id, choreToBeMarked));
+    dispatch(
+      addActivity(
+        `You confirmed the completion of a chore on ${moment().format(
+          "MMMM Do YYYY, h:mm:ss a"
+        )}`
+      )
+    );
   };
 
   const target = "Chore";
@@ -66,7 +76,7 @@ const Chore = props => {
     <Card
       hoverable="true"
       style={{
-        width: 300,
+        width: "24%",
         marginTop: 16,
         marginRight: 10,
         boxShadow: "0 8px 10px rgba(0,0,0,.20)"
@@ -116,7 +126,7 @@ const Chore = props => {
       {props.chore.childMarkComplete && props.chore.parentMarkComplete ? (
         <Alert
           message="Completed"
-          description="This chore has been completed."
+          description="This chore has been completed with 10 points assigned."
           type="success"
           showIcon
         />
@@ -127,7 +137,14 @@ const Chore = props => {
       <br />
       <Meta title={props.chore.title} description={props.chore.description} />
       <div className="card-bottom">
-        <div className="assigned">Assigned to:{}</div>
+        <div className="assigned">
+          Assigned to:{" "}
+          <strong>
+            {children.length > 0
+              ? children.find(child => child.id === props.chore.child_id).name
+              : ""}
+          </strong>
+        </div>
         <div className="tag">
           <Tag color="green">On schedule</Tag>
         </div>

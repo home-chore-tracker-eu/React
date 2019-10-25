@@ -23,7 +23,7 @@ const LoginForm = props => {
       }
     });
   };
-  if (localStorage.getItem("token")) return <Redirect to="/dashboard" />;
+  if (localStorage.getItem("token")) return <Redirect to="/profile" />;
   return (
     <div className="wrapper">
       <div className="nav-signup">

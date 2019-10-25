@@ -16,18 +16,18 @@ function ArchivesChores() {
     [chores]
   );
 
-  console.log(archives)
+  console.log(archives);
 
-if (archives.length) {
-  return (
-    <div className="dashboard-chores">
-      {archives.map(chore => (
-        <ArchivesChore chore={chore} />
-      ))}
-    </div>
-  );
-}
-return null
+  if (archives.length) {
+    return (
+      <div className="dashboard-chores">
+        {archives.map(chore => (
+          <ArchivesChore chore={chore} />
+        ))}
+      </div>
+    );
+  }
+  return null;
 }
 
 export default ArchivesChores;

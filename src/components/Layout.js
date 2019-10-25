@@ -1,6 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Layout, Menu, Icon } from "antd";
+import ArchivesChores from "../components/Archives/ArchivesChores";
 import ChoresList from "./Chores";
 import ArchivesChores from "../components/Archives/ArchivesChores";
 import Forms from "./Forms";
@@ -57,8 +58,8 @@ const DashboardLayout = ({
               <span>Performances</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="2">
-            <Link to="/archives">
+          <Menu.Item key="3">
+            <Link to="/dashboard/archives">
               <Icon type="profile" theme="filled" />
               <span>Archives</span>
             </Link>
@@ -114,9 +115,9 @@ const DashboardLayout = ({
                 />
               )}
             />
-
-            <Route exact path="/performances" component={Performances} />
-            <Route path="/archives" component={ArchivesChores} />
+            
+            <Route path="/dashboard/performances" component={Performances}/>
+            <Route path="/dashboard/archives" component={ArchivesChores} />
 
             <Forms
               visible={visible}

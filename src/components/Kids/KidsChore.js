@@ -5,14 +5,18 @@ import { editChore } from "../../store/actions";
 const { Meta } = Card;
 
 const { Countdown } = Statistic;
-const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
 
 const KidsChore = props => {
   const dispatch = useDispatch();
 
+  const deadline = props.chore.childMarkComplete && props.parentMarkCompleted
+    ? 0
+    : Date.parse(props.chore.duedate);
+
   const choreToBeMarked = { ...props.chore, childMarkComplete: true };
   const handleComplete = e => {
     e.preventDefault();
+    props.setSuccessBox(true)
     dispatch(editChore(props.chore.id, choreToBeMarked));
   };
 

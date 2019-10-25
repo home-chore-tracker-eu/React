@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import PrivateRoute from "../src/components/PrivateRoute";
+import SecondPrivateRoute from "../src/components/SecondPrivateRoute";
 import Profile from "./components/Profile";
-import {fetchChildren, fetchChores, fetchFamilies} from './store/actions'
-import KidsDashboard from './components/Kids/KidsDashboard'
+import {
+  fetchChildren,
+  fetchChores,
+  fetchFamilies,
+  fetchUser
+} from "./store/actions";
+import KidsDashboard from "./components/Kids/KidsDashboard";
 import "./App.less";
 import MineChore from "./components/MineChore";
 import Login from "./components/Login";
-import SignUp from './components/SignUp';
+import "./App.less";
 
 function App() {
   const [kid, setKid] = useState(false);
@@ -16,16 +22,17 @@ function App() {
   const chores = useSelector(state => state.chores.chores);
   const families = useSelector(state => state.families.families);
   const children = useSelector(state => state.children.children);
+  const user = useSelector(state => state.user.user);
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(fetchChores()), [chores]);
   useEffect(() => dispatch(fetchFamilies()), [families, dispatch]);
   useEffect(() => dispatch(fetchChildren()), [children]);
+  useEffect(() => dispatch(fetchUser()), [user]);
 
   return (
     <>
       <Route exact path="/" component={Login} />
-      <Route exact path="/signup" component={SignUp} />
       <Route
         exact
         path="/profile"
@@ -34,13 +41,13 @@ function App() {
             {...props}
             kid={kid}
             setKid={setKid}
-            parent = {parent}
+            parent={parent}
             setParent={setParent}
           />
         )}
       />
-        <PrivateRoute exact path="/dashboard" component={MineChore} />
-        <PrivateRoute exact path="/kids/:id" component={KidsDashboard} />
+      <PrivateRoute path="/dashboard" component={MineChore} />
+      <SecondPrivateRoute path="/kids/:id" component={KidsDashboard} />
     </>
   );
 }

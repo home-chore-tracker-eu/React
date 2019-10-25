@@ -1,6 +1,54 @@
 import { combineReducers } from "redux";
 import * as types from "../actions";
 
+//USER REDUCER
+const initialActivityState = { activities: [] };
+
+const activitiesReducer = (state = initialActivityState, action) => {
+  switch (action.type) {
+    case types.ADD_RECENT_ACTIVITY:
+      return {
+        activities: state.activities.concat(action.payload)
+      };
+    default:
+      return state;
+  }
+};
+
+//USER REDUCER
+const initialUserState = {
+  user: [],
+  isFetching: false,
+  isDeleting: false,
+  isPosting: false,
+  isPutting: false,
+  error: ""
+};
+
+const userReducer = (state = initialUserState, action) => {
+  switch (action.type) {
+    case types.FETCH_USER_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case types.FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        user: action.payload
+      };
+    case types.FETCH_USER_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
 //CHORES REDUCER
 const initialChores = {
   chores: [],
@@ -16,7 +64,7 @@ const choresReducer = (state = initialChores, action) => {
     case types.FETCH_CHORES_START:
       return {
         ...state,
-        isFetching: true,
+        isFetching: true
       };
     case types.FETCH_CHORES_SUCCESS:
       return {
@@ -33,7 +81,7 @@ const choresReducer = (state = initialChores, action) => {
     case types.POST_NEW_CHORE_START:
       return {
         ...state,
-        isPosting: true,
+        isPosting: true
       };
     case types.POST_NEW_CHORE_SUCCESS:
       return {
@@ -49,7 +97,7 @@ const choresReducer = (state = initialChores, action) => {
     case types.DELETE_CHORE_START:
       return {
         ...state,
-        isDeleting: true,
+        isDeleting: true
       };
     case types.DELETE_CHORE_SUCCESS:
       return {
@@ -204,5 +252,7 @@ const familiesReducer = (state = initialFamilies, action) => {
 export const reducer = combineReducers({
   chores: choresReducer,
   children: childrenReducer,
-  families: familiesReducer
+  families: familiesReducer,
+  user: userReducer,
+  activities: activitiesReducer
 });

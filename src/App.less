@@ -154,9 +154,11 @@
   background-color: rgb(37, 147, 252);
 }
 
-.chores {
+.chores, .dashboard-chores {
   display: flex;
   margin-top: 1vh;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .dashboard-chores {
@@ -208,4 +210,75 @@
 }
 .page2-box .ant-row > div {
   padding: 0 8px;
+}
+
+
+
+  @-webkit-keyframes pulse {
+    0% { box-shadow:0 0 8px #ea4c89, inset 0 0 8px #ea4c89; }
+    50% { box-shadow:0 0 16px #ea4c89, inset 0 0 14px #ea4c89; }
+    100% { box-shadow:0 0 8px #ea4c89, inset 0 0 8px #ea4c89; }
+  }
+  
+  .profile-avatar{
+    margin: 5px;
+    background-color:transparent;
+    box-shadow: 0 0 9px #ea4c89, inset 0 0 8px #ea4c89;
+    -webkit-animation: pulse 1s linear 1s infinite;
+  }
+
+  .profile-avatar, .kids-profile-avatar {
+    color: #ea4c89;
+    text-shadow: 0 0 4px #ea4c89;
+    transition: all .2s ease-in-out;
+  }
+
+  .profile-avatar:hover, .kids-profile-avatar:hover {
+    transform: scale(1.2)
+  }
+
+  .profile {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center
+  }
+
+.parents-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-image {
+  width: 29%;
+}
+
+.kids-box {
+  display: flex;
+  justify-content: center;
+}
+
+.kids-profile-avatar {
+  margin: 5px;
+  text-shadow: 0 0 4px #ea4c89;
+  
+}
+
+.profile h2 {
+  font-family: 'Happy Monkey';
+
+}
+
+.profile h1 {
+  font-family: 'Ribeye', cursive;
+  color: rgb(37,147,252);
+  overflow-wrap: break-word;
 }

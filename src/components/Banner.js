@@ -1,10 +1,37 @@
 import React from "react";
-import { Card, Statistic, Row, Col, Icon } from "antd";
+import { Card, Statistic, Row, Col, Icon, Timeline } from "antd";
+import { useSelector } from "react-redux";
 
 const Banner = props => {
+  const chores = useSelector(state => state.chores.chores);
+  const activities = useSelector(state => state.activities.activities);
+
+  const active =
+    (chores.filter(chore => chore.childMarkComplete === 1).length /
+      chores.length) *
+    100;
+  const idle =
+    (chores.filter(chore => chore.childMarkComplete === 0).length /
+      chores.length) *
+    100;
+
+  const handleActive = num => {
+    if (num) {
+      return active;
+    }
+    return 0;
+  };
+
+  const handleIdle = num => {
+    if (num) {
+      return idle;
+    }
+    return 0;
+  };
+
   return (
-    <div>
-      <div className="banner-left">
+    <Row gutter={24}>
+      <Col span={18}>
         <Card
           title="PARENT OVERVIEW"
           headStyle={{
@@ -16,7 +43,7 @@ const Banner = props => {
             float: "left"
           }}
           style={{
-            width: "66%",
+            width: "100%",
             marginTop: 16,
             marginRight: 10,
             borderRadius: "10px",
@@ -33,8 +60,8 @@ const Banner = props => {
           <div className="card-bottom"></div>
           <p style={{ color: "white", fontFamily: "Muli" }}>CHORES CREATED</p>
           <Statistic
-            value={10}
-            precision={2}
+            value={chores.length}
+            precision={0}
             valueStyle={{ color: "#fff" }}
             style={{ color: "#fff", fontSize: "25% !important" }}
           />
@@ -43,10 +70,15 @@ const Banner = props => {
           >
             <Row gutter={8}>
               <Col span={12}>
-                <Card style = {{ borderRadius: "10px", backgroundColor: "rgb(230,247,255)"}}> 
+                <Card
+                  style={{
+                    borderRadius: "10px",
+                    backgroundColor: "rgb(230,247,255)"
+                  }}
+                >
                   <Statistic
-                    title="Active"
-                    value={11.28}
+                    title="ACTIVE OR COMPLETED"
+                    value={handleActive(active)}
                     precision={2}
                     valueStyle={{ color: "#3f8600" }}
                     prefix={<Icon type="arrow-up" />}
@@ -55,10 +87,15 @@ const Banner = props => {
                 </Card>
               </Col>
               <Col span={12}>
-                <Card style = {{ borderRadius: "10px", backgroundColor: "rgb(230,247,255)"}}>
+                <Card
+                  style={{
+                    borderRadius: "10px",
+                    backgroundColor: "rgb(230,247,255)"
+                  }}
+                >
                   <Statistic
-                    title="Idle"
-                    value={9.3}
+                    title="IDLE"
+                    value={handleIdle(idle)}
                     precision={2}
                     valueStyle={{ color: "#cf1322" }}
                     prefix={<Icon type="arrow-down" />}
@@ -69,8 +106,27 @@ const Banner = props => {
             </Row>
           </footer>
         </Card>
-      </div>
-    </div>
+      </Col>
+
+      <Col span={6}>
+        <Card
+          title="Recent Activity"
+          style={{
+            boxShadow: "0 8px 10px rgba(0,0,0,.08)",
+            borderRadius: "10px",
+            marginTop: "5%",
+            overflowY: "auto"
+          }}
+        >
+          <Timeline mode="right">
+            {activities.map(activity => (
+              <Timeline.Item>{activity}</Timeline.Item>
+            ))}
+          </Timeline>
+          ,
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

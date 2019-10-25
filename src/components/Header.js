@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
 import {
   Layout,
   Icon,
@@ -20,19 +21,26 @@ const profile = {
   user: "random"
 };
 
-const AppHeader = ({
-  history,
-  setVisible,
-  visible,
-  handleMenu,
-  target,
-  setTarget,
-  setParent
-}) => {
+const AppHeader = ({ handleMenu }) => {
   let username = profile.user ? profile.user.name : "";
+
+  const [notification, setNotification] = useState();
+  const chores = useSelector(state => state.chores.chores);
+  const children = useSelector(state => state.children.children);
+
+  useEffect(
+    () =>
+      setNotification(
+        chores.filter(
+          chore => chore.childMarkComplete === 1 && !chore.parentMarkComplete
+        ).length
+      ),
+    [chores]
+  );
+
   const menu = (
     <Menu>
-      <Menu.Item>Profile</Menu.Item>
+      <Menu.Item><Link to ="/">Profile Page</Link></Menu.Item>
       <Menu.Item
         onClick={() => {
           localStorage.removeItem("token");
@@ -46,8 +54,9 @@ const AppHeader = ({
 
   const content = (
     <div>
-      <p>John completed a task!</p>
-      <p>Mary missed the due date for a task!</p>
+      <p>{`You have ${notification} new submitted chore${
+        notification !== 1 ? "s" : ""
+      } awaiting approval!`}</p>
     </div>
   );
 
@@ -70,13 +79,6 @@ const AppHeader = ({
         <div className="App-logo">
           <img src="https://bit.ly/31Hjopt" alt="minechore"></img>
         </div>
-        <div>
-          <Search 
-            placeholder="Search"
-            onSearch={value => console.log(value)}
-            style={{ width: 85 }}
-          />
-        </div>
       </div>
 
       <div className="right">
@@ -88,18 +90,11 @@ const AppHeader = ({
           </Dropdown>
         </div>
 
-        <div className="setting">
-          <Badge className="header-icon">
-            <Icon type="setting" />
-          </Badge>
-        </div>
 
         <div className="popover">
           <Popover content={content} trigger="click">
-            <Badge className="header-icon" count={2}>
-              <a href="#">
-                <Icon type="bell" />
-              </a>
+            <Badge className="header-icon" count={notification}>
+              <Icon type="bell" />
             </Badge>
           </Popover>
         </div>
