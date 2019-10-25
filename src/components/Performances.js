@@ -3,15 +3,6 @@ import { Row, Col, Table, Icon } from "antd";
 import GM from "g2-mobile";
 import PanelBox from "./PanelBox";
 import { useSelector } from "react-redux";
-import {
-  BarChart,
-
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from "recharts";
 import createGM from "./gm";
 import { pieData } from "./chart2.js";
 
@@ -54,17 +45,6 @@ const Home = () => {
     }
   }
 
-  const data = [];
-  if(children && families) {
-    for(let i = 0; i < children.length; i++) {
-      data.push({
-        name: `${children[i].name}`,
-        rate: `${children[i].chores.filter(chore => chore.parentMarkComplete)
-          .length * 100}`
-      })
-    }
-
-  }
 
   const tableData = [];
   if (children && families) {
@@ -108,72 +88,6 @@ const Home = () => {
       });
     }
   });
-  const Pie = createGM(chart => {
-    chart.source(pieData, {
-      value: { type: "linear", min: 0, max: 15, tickCount: 6 },
-      length: { type: "linear", min: 0, max: 10 },
-      y: { type: "linear", min: 0, max: 1 }
-    });
-    chart.coord("polar", {
-      inner: 0,
-      startAngle: -1.25 * Math.PI,
-      endAngle: 0.25 * Math.PI
-    });
-
-    chart.axis("value", {
-      tickLine: {
-        strokeStyle: "#b9e6ef",
-        lineWidth: 2,
-        value: -5
-      },
-      label: null,
-      grid: null,
-      line: null
-    });
-    chart.axis("y", false);
-
-    chart.guide().arc([0, 1.05], [4.8, 1.05], {
-      strokeStyle: "#18b7d6",
-      lineWidth: 5,
-      lineCap: "round"
-    });
-    chart.guide().arc([5.2, 1.05], [9.8, 1.05], {
-      strokeStyle: "#ccc",
-      lineWidth: 5,
-      lineCap: "round"
-    });
-    chart.guide().arc([10.2, 1.05], [15, 1.05], {
-      strokeStyle: "#ccc",
-      lineWidth: 5,
-      lineCap: "round"
-    });
-    chart.guide().arc([0, 1.2], [15, 1.2], {
-      strokeStyle: "#ccc",
-      lineWidth: 1
-    });
-    chart.guide().text([-0.5, 1.3], "0.00%", {
-      fillStyle: "#ccc",
-      font: "18px Montserrat",
-      textAlign: "center"
-    });
-    chart.guide().text([7.5, 0.7], "7.50%", {
-      fillStyle: "#ccc",
-      font: "18px Montserrat",
-      textAlign: "center"
-    });
-    chart.guide().text([15.5, 1.3], "15.00%", {
-      fillStyle: "#ccc",
-      font: "18px Montserrat",
-      textAlign: "center"
-    });
-    chart
-      .point()
-      .position("value*y")
-      .size("length")
-      .color("#18b7d6")
-      .shape("dashBoard");
-    chart.render();
-  }, 218);
 
   const Line = createGM(chart => {
     var defs = {
@@ -291,32 +205,18 @@ const Home = () => {
             </Col>
           </Row>
           <PanelBox title="Percentage Completion Rate Per Child">
-            <BarChart
-              width={600}
-              height={300}
-              data={data}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <XAxis dataKey="name" />
-              <YAxis />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="rate" fill="#8884d8" />
-            </BarChart>
+           {barData.length ? <Bar data={barData}/> : null}
           </PanelBox>
         </Col>
         <Col xs={24} md={10}>
           <PanelBox title="Best Performers (Points)" bodyStyle={{ padding: 0 }}>
-            <Line data={barData} />
+            <Line data={chartData} />
           </PanelBox>
-          <PanelBox title="Overall Completion Rate" bodyStyle={{ padding: 0 }}>
-            <Pie data={pieData} />
-          </PanelBox>
+          
         </Col>
       </Row>
 
-      <PanelBox title="Current Kids">
+      <PanelBox title="Current List of Kids">
         <Table
           columns={columns}
           dataSource={tableData}

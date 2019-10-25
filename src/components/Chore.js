@@ -22,11 +22,9 @@ const Chore = props => {
     ? 0
     : Date.parse(props.chore.duedate);
 
-  const children = useSelector(state => state.children.children)
-
+  const children = useSelector(state => state.children.children);
 
   const dispatch = useDispatch();
-
 
   const handleDelete = e => {
     e.preventDefault();
@@ -37,7 +35,13 @@ const Chore = props => {
   const parentMarkComplete = e => {
     e.preventDefault();
     dispatch(editChore(props.chore.id, choreToBeMarked));
-    dispatch(addActivity(`You confirmed the completion of a chore on ${moment().format('MMMM Do YYYY, h:mm:ss a')}`))
+    dispatch(
+      addActivity(
+        `You confirmed the completion of a chore on ${moment().format(
+          "MMMM Do YYYY, h:mm:ss a"
+        )}`
+      )
+    );
   };
 
   const target = "Chore";
@@ -133,7 +137,14 @@ const Chore = props => {
       <br />
       <Meta title={props.chore.title} description={props.chore.description} />
       <div className="card-bottom">
-        <div className="assigned">Assigned to: <strong>{children.length > 0 ? (children.find(child => child.id === props.chore.child_id)).name : ""}</strong></div>
+        <div className="assigned">
+          Assigned to:{" "}
+          <strong>
+            {children.length > 0
+              ? children.find(child => child.id === props.chore.child_id).name
+              : ""}
+          </strong>
+        </div>
         <div className="tag">
           <Tag color="green">On schedule</Tag>
         </div>
