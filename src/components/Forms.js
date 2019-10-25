@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Col, Row, Input, Select, DatePicker } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { postNewChore, postNewChild, postNewFamily, editChore } from "../store/actions";
-import Moment from "moment";
+import { postNewChore, postNewChild, postNewFamily, editChore, addActivity } from "../store/actions";
+import moment from "moment";
 
 const { Option } = Select;
 
@@ -50,7 +50,7 @@ const Forms = ({
         }
 
         if (target === "Chore") {
-          const date = Moment(new Date(values.duedate["_d"])).format(
+          const date = moment(new Date(values.duedate["_d"])).format(
             "YYYY-MM-DD"
           );
           const matchingChild = children.find(
@@ -79,6 +79,7 @@ const Forms = ({
         if (!editing) {
           setTarget("");
           dispatch(postNewChore(newItem));
+          dispatch(addActivity(`You created a new chore on ${moment().format('MMMM Do YYYY, h:mm:ss a')}`))
         }
         dispatch((editChore(editItem.id, newItem)))
         setEditing(false);

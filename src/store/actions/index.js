@@ -53,7 +53,15 @@ export const DELETE_FAMILY_START = "DELETE_FAMILY_START";
 export const DELETE_FAMILY_SUCCESS = "DELETE_FAMILY_SUCCESS";
 export const DELETE_FAMILY_FAILURE = "DELETE_FAMILY_FAILURE";
 
+export const ADD_RECENT_ACTIVITY = "ADD_RECENT_ACTIVITY"
+
 //ACTION CREATORS
+
+export const addActivity = activity => {
+  return { type: ADD_RECENT_ACTIVITY, payload: activity };
+};
+
+
 //CHORES
 
 export const fetchUser = () => dispatch => {

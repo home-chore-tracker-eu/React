@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const Banner = props => {
   const chores = useSelector(state => state.chores.chores);
+  const activities = useSelector(state => state.activities.activities);
 
   const active =
     (chores.filter(chore => chore.childMarkComplete === 1).length /
@@ -118,14 +119,9 @@ const Banner = props => {
           }}
         >
           <Timeline mode="right">
-            <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
-            <Timeline.Item>
-              Solve initial network problems 2015-09-01
-            </Timeline.Item>
-            <Timeline.Item>Technical testing 2015-09-01</Timeline.Item>
-            <Timeline.Item>
-              Network problems being solved 2015-09-01
-            </Timeline.Item>
+            {activities.map(activity => (
+              <Timeline.Item>{activity}</Timeline.Item>
+            ))}
           </Timeline>
           ,
         </Card>

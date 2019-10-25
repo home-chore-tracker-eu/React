@@ -2,6 +2,20 @@ import { combineReducers } from "redux";
 import * as types from "../actions";
 
 //USER REDUCER
+const initialActivityState = { activities: [] };
+
+const activitiesReducer = (state = initialActivityState, action) => {
+  switch (action.type) {
+    case types.ADD_RECENT_ACTIVITY:
+      return {
+        activities: state.activities.concat(action.payload)
+      };
+    default:
+      return state;
+  }
+};
+
+//USER REDUCER
 const initialUserState = {
   user: [],
   isFetching: false,
@@ -239,5 +253,6 @@ export const reducer = combineReducers({
   chores: choresReducer,
   children: childrenReducer,
   families: familiesReducer,
-  user: userReducer
+  user: userReducer,
+  activities: activitiesReducer
 });

@@ -11,7 +11,8 @@ import {
   Button
 } from "antd";
 import { useDispatch } from "react-redux";
-import { deleteChore, editChore } from "../store/actions";
+import { deleteChore, editChore, addActivity } from "../store/actions";
+import moment from "moment";
 const { Meta } = Card;
 
 const { Countdown } = Statistic;
@@ -33,6 +34,7 @@ const Chore = props => {
   const parentMarkComplete = e => {
     e.preventDefault();
     dispatch(editChore(props.chore.id, choreToBeMarked));
+    dispatch(addActivity(`You confirmed the completion of a chore on ${moment().format('MMMM Do YYYY, h:mm:ss a')}`))
   };
 
   const target = "Chore";
