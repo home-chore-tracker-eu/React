@@ -57,27 +57,6 @@ const DashboardLayout = ({
               <span>Archives</span>
             </Link>
           </Menu.Item>
-
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <Icon type="smile" theme="filled" />
-                <span>Family</span>
-              </span>
-            }
-          >
-            <Menu.Item key="6">
-              {" "}
-              <Icon type="skin" theme="filled" />
-              <span>Kevin</span>
-            </Menu.Item>
-            <Menu.Item key="7">
-              {" "}
-              <Icon type="skin" theme="filled" />
-              <span>John</span>
-            </Menu.Item>
-          </SubMenu>
         </Menu>
       </Sider>
       {/* </div> */}

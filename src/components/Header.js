@@ -27,6 +27,7 @@ const AppHeader = ({ handleMenu }) => {
   const [notification, setNotification] = useState();
   const chores = useSelector(state => state.chores.chores);
   const children = useSelector(state => state.children.children);
+  const user = useSelector(state => state.user.user);
 
   useEffect(
     () =>
