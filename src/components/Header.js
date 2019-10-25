@@ -67,14 +67,14 @@ const AppHeader = ({
       style={{ background: "#fff", padding: 0, positon: "fixed" }}
     >
       <div className="left">
-        <div>
-          <h2>MineChore</h2>
+        <div className="App-logo">
+          <img src="https://bit.ly/31Hjopt" alt="minechore"></img>
         </div>
         <div>
-          <Search
-            placeholder="Search for chores"
+          <Search 
+            placeholder="Search"
             onSearch={value => console.log(value)}
-            style={{ width: 300 }}
+            style={{ width: 85 }}
           />
         </div>
       </div>
@@ -83,7 +83,7 @@ const AppHeader = ({
         <div className="header-button">
           <Dropdown overlay={buttonmenu}>
             <Button type="primary">
-              <Icon type="plus" /> Create New <Icon type="down" />
+              <Icon type="plus" /> New <Icon type="down" />
             </Button>
           </Dropdown>
         </div>

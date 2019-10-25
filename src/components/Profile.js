@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar } from "antd";
 import { useSelector } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+import '../../src/App.less';
 
 const Profile = ({ setParent, setKid, parent, kid }) => {
   const children = useSelector(state => state.children.children);
