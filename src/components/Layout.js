@@ -5,10 +5,8 @@ import ArchivesChores from "../components/Archives/ArchivesChores";
 import ChoresList from "./Chores";
 import Forms from "./Forms";
 import Performances from "./Performances";
-import { Route, BrowserRouter as Router, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 const { Content, Footer, Sider } = Layout;
-
-const { SubMenu } = Menu;
 
 const DashboardLayout = ({
   visible,
