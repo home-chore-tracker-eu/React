@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import {
   Layout,
   Icon,
@@ -13,7 +13,6 @@ import {
   Input,
   Button
 } from "antd";
-import { statement } from "@babel/template";
 
 const { Search } = Input;
 const { Header } = Layout;
@@ -41,7 +40,7 @@ const AppHeader = ({ handleMenu }) => {
 
   const menu = (
     <Menu>
-      <Menu.Item>Profile</Menu.Item>
+      <Menu.Item><Link to ="/">Profile Page</Link></Menu.Item>
       <Menu.Item
         onClick={() => {
           localStorage.removeItem("token");
@@ -80,13 +79,6 @@ const AppHeader = ({ handleMenu }) => {
         <div>
           <h2>MineChore</h2>
         </div>
-        <div>
-          <Search
-            placeholder="Search for chores"
-            onSearch={value => console.log(value)}
-            style={{ width: 300 }}
-          />
-        </div>
       </div>
 
       <div className="right">
@@ -98,11 +90,6 @@ const AppHeader = ({ handleMenu }) => {
           </Dropdown>
         </div>
 
-        <div className="setting">
-          <Badge className="header-icon">
-            <Icon type="setting" />
-          </Badge>
-        </div>
 
         <div className="popover">
           <Popover content={content} trigger="click">

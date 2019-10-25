@@ -1,6 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import {
   Layout,
   Icon,
@@ -9,7 +9,7 @@ import {
   Dropdown,
   Avatar,
   Popover,
-  Input,
+  Input
 } from "antd";
 
 const { Search } = Input;
@@ -23,8 +23,15 @@ const KidsHeader = () => {
   let username = profile.user ? profile.user.name : "";
   const menu = (
     <Menu>
-      <Menu.Item>Profile</Menu.Item>
-      <Menu.Item>Log Out</Menu.Item>
+      <Menu.Item><Link to ="/">Profile Page</Link></Menu.Item>
+      <Menu.Item
+        onClick={() => {
+          localStorage.removeItem("token");
+          redirect.push("/");
+        }}
+      >
+        Log Out
+      </Menu.Item>
     </Menu>
   );
 
@@ -45,21 +52,9 @@ const KidsHeader = () => {
         <div>
           <h2>MineChore</h2>
         </div>
-        <div>
-          <Search
-            placeholder="Search for chores"
-            onSearch={value => console.log(value)}
-            style={{ width: 300 }}
-          />
-        </div>
       </div>
 
       <div className="right">
-        <div className="setting">
-          <Badge className="header-icon">
-            <Icon type="setting" />
-          </Badge>
-        </div>
 
         <div className="popover">
           <Popover content={content} trigger="click">
